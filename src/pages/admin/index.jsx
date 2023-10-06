@@ -5,7 +5,7 @@ import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Admin() {
   return (
     <>
       <Head>
@@ -18,7 +18,7 @@ export default function Home() {
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
+            <code className={styles.code}>admin</code>
           </p>
           <div>
             <a
