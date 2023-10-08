@@ -8,7 +8,7 @@ import styles from '@/assets/styles/Navbar.module.css';
 
 
 export default function Navbar() {
-  const { isLogged, isNavbarActive, setIsNavbarActive, toggleNavbar, closeNavbar } = useContext(DataContext);
+  const { isLogged, isNavbarActive, toggleNavbar, closeNavbar } = useContext(DataContext);
 
   return (
     <nav className={styles.nav} data-open={isNavbarActive}>
@@ -26,14 +26,14 @@ export default function Navbar() {
               </li>
               {isLogged ? <>
                 <li>
-                  <Link href={"/dashboard"}>Panel</Link>
+                  <Link href={"/dashboard"} className={`${styles.btn} ${styles.dashboardBtn}`}>Panel</Link>
                 </li>
               </> : <>
                 <li>
-                  <Link href={"/auth/signup"}>Registrate</Link>
+                  <Link href={"/auth/signup"} className={`${styles.btn} ${styles.signupBtn}`}>Registrate</Link>
                 </li>
                 <li>
-                  <Link href={"/auth/login"}>Iniciar sesión</Link>
+                  <Link href={"/auth/login"} className={`${styles.btn} ${styles.loginBtn}`}>Iniciar sesión</Link>
                 </li>
               </>}
             </ul>

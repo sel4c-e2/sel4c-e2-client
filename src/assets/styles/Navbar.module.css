@@ -1,1 +1,40 @@
-.nav { background-color: var(--white); }
+.nav { background-color: var(--white); position: fixed; top: 0; right: 0; left: 0; width: 100%; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); }
+.nav .navContainer { padding-top: 1rem; padding-bottom: 1rem; }
+.nav .navContainer .content { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; }
+/* logo */
+.nav .navContainer .content .logo {  }
+.nav .navContainer .content .logo a { display: inline-block; font-size: 1.1rem; line-height: 1; font-weight: 600; }
+.nav .navContainer .content .logo a img {  }
+/* links */
+.nav .navContainer .content .links {  }
+.nav .navContainer .content .links ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-content: flex-start; gap: 1.2rem; }
+.nav .navContainer .content .links ul li {  }
+.nav .navContainer .content .links ul li a { display: inline-block; font-size: var(--font-size); color: var(--text-color); padding: .5rem 1rem; line-height: 1; font-weight: 400; }
+.nav .navContainer .content .links ul li a.btn { border-radius: .7rem; }
+.nav .navContainer .content .links ul li :is(a.btn.dashboardBtn, a.btn.loginBtn) { background-color: var(--sec-color); border: 1px solid var(--accent-color); }
+.nav .navContainer .content .links ul li a.btn.signupBtn { color: var(--inv-text-color); background-color: var(--pri-color); border: 1px solid var(--pri-color); }  
+.nav .navContainer .content .links ul li a.btn.loginBtn {  }
+/* toggle button */
+.nav .navContainer .content .links .toggleBtn { display: none; }
+.nav .navContainer .content .links .toggleBtn :is(.toggleBar1, .toggleBar2, .toggleBar3) {  }
+.nav .navContainer .content .links .toggleBtn .toggleBar1 {  }
+.nav .navContainer .content .links .toggleBtn .toggleBar2 {  }
+.nav .navContainer .content .links .toggleBtn .toggleBar3 {  }
+
+
+/* `xxl` applies to x-large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {}
+
+/* `xl` applies to large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {}
+
+/* `lg` applies to medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {}
+
+/* `md` applies to small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .nav .navContainer .content .links .toggleBtn { display: inline-block; }
+}
+
+/* `sm` applies to x-small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {}
