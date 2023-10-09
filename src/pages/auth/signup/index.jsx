@@ -10,18 +10,18 @@ export default function Signup() {
     const { isLogged } = useContext(DataContext);
     const router = useRouter();
 
-    // useEffect(() => {
-    //     if (isLogged) {
-    //         router.push('/dashboard');
-    //     } else {
-    //         router.push('/auth/login');
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (isLogged) {
+            router.push('/dashboard');
+        }
+    }, []);
     
     return (
-        <AuthLayout>
-            <h1>Crea tu cuenta</h1>
-            <SignupForm />
-        </AuthLayout>
+        <main>
+            <AuthLayout>
+                <h1>Crea tu cuenta</h1>
+                <SignupForm />
+            </AuthLayout>
+        </main>
     );
 };

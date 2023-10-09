@@ -1,5 +1,5 @@
 .main {  }
-.main .header {  }
+.main .header { padding-top: 6rem; }
 .main .header .headerContainer {  }
 .main .header .headerContainer .content {  }
 .main .header .headerContainer .content .column {  }

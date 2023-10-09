@@ -11,16 +11,14 @@ import { DataContext } from '@/context/DataContext';
 
 import style from '@/assets/styles/Form.module.css';
 
-export default function SignupForm() {
+export default function LoginForm() {
     const router = useRouter();
 
     const { fetchUser } = useContext(DataContext);
 
-    const formAction = SERVER_URL + "/admins";
+    const formAction = SERVER_URL + "/admins/login";
     const formMethod = "POST";
     const [formData, setFormData] = useState({
-        name: '',
-        lastname: '',
         email: '',
         password: ''
     });
@@ -47,6 +45,7 @@ export default function SignupForm() {
             });
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
                 localStorage.setItem("token", data.token);
                 fetchUser(data.token);
                 router.push('/dashboard');
@@ -58,23 +57,15 @@ export default function SignupForm() {
     }
 
     return (
-        <form action={formAction} method={formMethod} onSubmit={handleSubmit} className={`${style.form} ${style.signup}`}>
+        <form action={formAction} method={formMethod} onSubmit={handleSubmit} className={`${style.form} ${style.login}`}>
             <div className={style.formRow + ' row'}>
-                <div className={style.column + ' col-12 col-sm-6'}>
-                    <label htmlFor="name">Nombre</label>
-                    <input id='name' type="text" name="name" value={formData.name} onChange={handleInputChange} />
-                </div>
-                <div className={style.column + ' col-12 col-sm-6'}>
-                    <label htmlFor="lastname">Apellido</label>
-                    <input id='lastname' type="text" name="lastname" value={formData.lastname} onChange={handleInputChange} />
-                </div>
-            </div>
-            <div className={style.formRow + ' row'}>
-                <div className={style.column + ' col-12 col-sm-6'}>
+                <div className={style.column + ' col-12'}>
                     <label htmlFor="email">Correo electrónico</label>
                     <input id='email' type="email" name="email" value={formData.email} onChange={handleInputChange} />
                 </div>
-                <div className={style.column + ' col-12 col-sm-6'}>
+            </div>
+            <div className={style.formRow + ' row'}>
+                <div className={style.column + ' col-12'}>
                     <label htmlFor="password">Contraseña</label>
                     <input id='password' type="password" name="password" value={formData.password} onChange={handleInputChange} />
                 </div>
@@ -82,7 +73,7 @@ export default function SignupForm() {
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12 text-center'}>
                     <button type='submit' disabled={loading}>
-                        Crear cuenta
+                        Iniciar sesión
                     </button>
                 </div>
             </div>
