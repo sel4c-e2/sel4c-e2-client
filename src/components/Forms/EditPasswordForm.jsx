@@ -75,7 +75,7 @@ export default function EditPasswordForm() {
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12 text-center'}>
                     <button type='submit' disabled={loading || !dataChanged}>
-                        Modificar datos
+                        Cambiar contraseña
                     </button>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export default function LoginForm() {
 
     const { fetchUser } = useContext(DataContext);
 
-    let returnTo;
+    const returnTo = router.query.returnTo || "dashboard";
     const formAction = SERVER_URL + "/admins/login";
     const formMethod = "POST";
     const [formData, setFormData] = useState({
@@ -55,10 +55,6 @@ export default function LoginForm() {
         }
         setLoading(false);
     }
-    
-    useEffect(() => {
-        returnTo = router.query.returnTo || "dashboard";
-    }, [returnTo, router]);
 
     return (
         <form action={formAction} method={formMethod} onSubmit={handleSubmit} className={`${style.form} ${style.login}`}>
