@@ -10,6 +10,7 @@ export const DataContext = createContext(null);
 export const DataProvider = ({ children }) => {
     const [isLogged, setIsLogged] = useState(false);
     const [user, setUser] = useState({
+        id: '',
         name: '',
         lastname: '',
         email: '',
@@ -41,8 +42,8 @@ export const DataProvider = ({ children }) => {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
                     setUser({
+                        id: data.admin_id,
                         name: data.name,
                         lastname: data.lastname,
                         email: data.email,

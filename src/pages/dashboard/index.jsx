@@ -16,9 +16,9 @@ export default function Dashboard() {
     const { isLogged, user } = useContext(DataContext);
     useEffect(() => {
         if (!isLogged) {
-            router.push("/auth/login");
+            router.push("/auth/login?returnTo=dashboard");
         }
-    }, [isLogged]);
+    }, [isLogged, router]);
     return (
         <>
             <Head>

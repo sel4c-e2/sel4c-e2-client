@@ -8,12 +8,13 @@ export default function Auth() {
     const router = useRouter();
 
     useEffect(() => {
+        const returnTo = router.query.returnTo || "dashboard";
         if (isLogged) {
-            router.push('/dashboard');
+            router.push('/' + returnTo);
         } else {
             router.push('/auth/login');
         }
-    }, []);
+    }, [isLogged, router]);
     
     return null;
 };
