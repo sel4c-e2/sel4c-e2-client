@@ -45,7 +45,6 @@ export default function LoginForm() {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 localStorage.setItem("token", data.token);
                 fetchUser(data.token);
                 router.push('/dashboard');

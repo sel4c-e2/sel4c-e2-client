@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/assets/styles/Home.module.css'
+import landingImg from '@/assets/img/landing-img.png';
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles.column + ' col-12 col-sm-6'}>
-                <Image src={""} alt='Header Image' />
+                <Image src={landingImg} alt='Landing Image' />
               </div>
             </div>
           </div>

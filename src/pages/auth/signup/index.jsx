@@ -7,14 +7,14 @@ import AuthLayout from '@/components/Layouts/AuthLayout';
 import SignupForm from '@/components/Forms/SignupForm';
 
 export default function Signup() {
-    const { isLogged } = useContext(DataContext);
     const router = useRouter();
+    const { isLogged } = useContext(DataContext);
 
     useEffect(() => {
         if (isLogged) {
             router.push('/dashboard');
         }
-    }, []);
+    }, [isLogged]);
     
     return (
         <main>

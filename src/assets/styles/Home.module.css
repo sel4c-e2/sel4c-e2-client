@@ -3,3 +3,4 @@
 .main .header .headerContainer {  }
 .main .header .headerContainer .content {  }
 .main .header .headerContainer .content .column {  }
+.main .header .headerContainer .content .column img { width: 100%; height: auto; }

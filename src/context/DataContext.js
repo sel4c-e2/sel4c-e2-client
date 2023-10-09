@@ -12,7 +12,8 @@ export const DataProvider = ({ children }) => {
     const [user, setUser] = useState({
         name: '',
         lastname: '',
-        email: ''
+        email: '',
+        super: false
     });
 
     const [modalActive, setModalActive] = useState(false);
@@ -40,10 +41,12 @@ export const DataProvider = ({ children }) => {
                 });
                 if (response.ok) {
                     const data = await response.json();
+                    console.log(data);
                     setUser({
                         name: data.name,
                         lastname: data.lastname,
-                        email: data.email
+                        email: data.email,
+                        super: data.super
                     });
                     setIsLogged(true);
                 }
