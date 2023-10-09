@@ -18,11 +18,16 @@ export default function Signup() {
     }, [isLogged, router]);
     
     return (
-        <main>
-            <AuthLayout>
-                <h1>Inicia sesion</h1>
-                <LoginForm />
-            </AuthLayout>
-        </main>
+        <>
+            <Head>
+                <title>Iniciar sesion</title>
+            </Head>
+            <main>
+                <AuthLayout>
+                    <h1>Inicia sesion</h1>
+                    <LoginForm />
+                </AuthLayout>
+            </main>
+        </>
     );
 };

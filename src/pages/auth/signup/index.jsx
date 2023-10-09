@@ -18,11 +18,16 @@ export default function Signup() {
     }, [isLogged, router]);
     
     return (
-        <main>
-            <AuthLayout>
-                <h1>Crea tu cuenta</h1>
-                <SignupForm />
-            </AuthLayout>
-        </main>
+        <>
+            <Head>
+                <title>Crear cuenta</title>
+            </Head>
+            <main>
+                <AuthLayout>
+                    <h1>Crea tu cuenta</h1>
+                    <SignupForm />
+                </AuthLayout>
+            </main>
+        </>
     );
 };

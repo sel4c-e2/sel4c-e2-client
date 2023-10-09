@@ -20,13 +20,18 @@ export default function Account() {
     }, [isLogged, router]);
     
     return (
-        <main>
-            <AuthLayout>
-                <h1 className={style.title}>{user.name} {user.lastname}</h1>
-                <EditProfileForm />
-                <hr />
-                <EditPasswordForm />
-            </AuthLayout>
-        </main>
+        <>
+            <Head>
+                <title>Iniciar sesion</title>
+            </Head>
+            <main>
+                <AuthLayout>
+                    <h1 className={style.title}>{user.name} {user.lastname}</h1>
+                    <EditProfileForm />
+                    <hr />
+                    <EditPasswordForm />
+                </AuthLayout>
+            </main>
+        </>
     );
 };
