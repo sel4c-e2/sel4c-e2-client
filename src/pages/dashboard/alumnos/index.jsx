@@ -7,30 +7,27 @@ import Image from 'next/image'
 import { DataContext } from '@/context/DataContext'
 
 import DashboardLayout from '@/components/Layouts/DashboardLayout'
-import LogoutButton from '@/components/Forms/LogoutButton'
+import StudentsTable from '@/components/StudentsTable'
 
-import styles from '@/assets/styles/Home.module.css'
+import styles from '@/assets/styles/Page.module.css'
 
-export default function Dashboard() {
+export default function Students() {
     const router = useRouter();
     const { isLogged, user } = useContext(DataContext);
     useEffect(() => {
         if (!isLogged) {
-            router.push("/auth/login?returnTo=dashboard");
+            router.push("/auth/login?returnTo=dashboard/alumnos");
         }
     }, [isLogged, router]);
     return (
         <>
             <Head>
-                <title>Panel</title>
+                <title>Alumnos</title>
             </Head>
             <main className={styles.main}>
                 <DashboardLayout>
-                    <p>Dashboard</p>
-                    <Link href={"/dashboard/alumnos"}>
-                        Alumnos
-                    </Link>
-                    <LogoutButton />
+                    <h3>Alumnos</h3>
+                    <StudentsTable />
                 </DashboardLayout>
             </main>
         </>
