@@ -1,4 +1,4 @@
-.nav { background-color: var(--white); position: fixed; top: 0; right: 0; left: 0; width: 100%; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); }
+.nav { background-color: var(--white); position: fixed; top: 0; right: 0; left: 0; width: 100%; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); z-index: 10; }
 .nav .navContainer { padding-top: 1rem; padding-bottom: 1rem; }
 .nav .navContainer .content { display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; }
 /* logo */

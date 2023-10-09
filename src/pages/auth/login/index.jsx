@@ -3,17 +3,25 @@ import { useRouter } from 'next/router';
 
 import { DataContext } from '@/context/DataContext';
 
-export default function Login() {
-    const { isLogged } = useContext(DataContext);
-    const router = useRouter();
+import AuthLayout from '@/components/Layouts/AuthLayout';
+import LoginForm from '@/components/Forms/LoginForm';
 
-    // useEffect(() => {
-    //     if (isLogged) {
-    //         router.push('/dashboard');
-    //     } else {
-    //         router.push('/auth/login');
-    //     }
-    // }, []);
+export default function Signup() {
+    const router = useRouter();
+    const { isLogged } = useContext(DataContext);
+
+    useEffect(() => {
+        if (isLogged) {
+            router.push('/dashboard');
+        }
+    }, [isLogged]);
     
-    return null;
+    return (
+        <main>
+            <AuthLayout>
+                <h1>Inicia sesion</h1>
+                <LoginForm />
+            </AuthLayout>
+        </main>
+    );
 };
