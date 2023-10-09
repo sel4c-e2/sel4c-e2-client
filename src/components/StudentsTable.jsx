@@ -14,54 +14,49 @@ import styles from '@/assets/styles/Page.module.css'
 export default function StudentsTable() {
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(true);
-    const fetchUsers = async () => {
-        setLoading(true);
-        try {
-            const response = await fetch(SERVER_URL + "/users/", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
-            console.log(data.message);
-            console.log(data.users);
-            console.log(data.users[0]);
-            setUsers(data.users);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-        setLoading(false);
-    };
-    const fetchCountryAndUniversityInfo = async () => {
-        if (users) {
-            const updatedUsers = await Promise.all(
-                users.map(async (user) => {
-                    try {
-                        const countryResponse = await fetch(`${SERVER_URL}/countries/${user.country_id}`);
-                        const countryData = await countryResponse.json();
-                        const universityResponse = await fetch(`${SERVER_URL}/universities/${user.university_id}`);
-                        const universityData = await universityResponse.json();
-                        return {
-                            ...user,
-                            country_name: countryData.name,
-                            university_name: universityData.name
-                        };
-                    } catch (error) {
-                        console.error('Error fetching country or university data:', error);
-                        return user; // Return the user without additional info if there's an error
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(SERVER_URL + "/users/", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
                     }
-                })
-            );
-            setUsers(updatedUsers);
-        }
-    };
-    useEffect(() => {
-        fetchUsers();
+                });
+                const data = await response.json();
+                console.log(data.message);
+                console.log(data.users);
+                console.log(data.users[0]);
+    
+                const updatedUsers = await Promise.all(
+                    data.users.map(async (user) => {
+                        try {
+                            const countryResponse = await fetch(`${SERVER_URL}/countries/${user.country_id}`);
+                            const countryData = await countryResponse.json();
+                            const universityResponse = await fetch(`${SERVER_URL}/universities/${user.university_id}`);
+                            const universityData = await universityResponse.json();
+                            return {
+                                ...user,
+                                country_name: countryData.name,
+                                university_name: universityData.name
+                            };
+                        } catch (error) {
+                            console.error('Error fetching country or university data:', error);
+                            return user; // Return the user without additional info if there's an error
+                        }
+                    })
+                );
+                setUsers(updatedUsers);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            setLoading(false);
+        };
+    
+        fetchData();
     }, []);
-    useEffect(() => {
-        fetchCountryAndUniversityInfo();
-    }, [users]);
+    
     return (
         <>
             <div className={styles.table}>
@@ -88,7 +83,7 @@ export default function StudentsTable() {
                 {loading ? <>
                     <p>Cargando alumnos...</p>
                 </> : <>
-                    {users.length > 0 ? <>
+                    {users && users.length > 0 ? <>
                         {users.map(user => (
                             <div className={styles.tableRow + ' row'} key={user.user_id}>
                                 <div className={styles.tableCol + ' col'}>

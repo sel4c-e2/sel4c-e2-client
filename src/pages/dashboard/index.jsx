@@ -28,8 +28,10 @@ export default function Dashboard() {
                 <DashboardLayout>
                     <p>Dashboard</p>
                     <Link href={"/dashboard/alumnos"}>
-                        Alumnos
+                        Alumnos {"->"}
                     </Link>
+                    <br />
+                    <br />
                     <LogoutButton />
                 </DashboardLayout>
             </main>
