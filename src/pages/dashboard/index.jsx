@@ -7,12 +7,13 @@ import Image from 'next/image'
 import { DataContext } from '@/context/DataContext'
 
 import DashboardLayout from '@/components/Layouts/DashboardLayout'
+import LogoutButton from '@/components/Forms/LogoutButton'
 
 import styles from '@/assets/styles/Home.module.css'
 
 export default function Dashboard() {
     const router = useRouter();
-    const { isLogged } = useContext(DataContext);
+    const { isLogged, user } = useContext(DataContext);
     useEffect(() => {
         if (!isLogged) {
             router.push("/auth/login");
@@ -29,6 +30,7 @@ export default function Dashboard() {
             <main className={styles.main}>
                 <DashboardLayout>
                     <p>Dashboard</p>
+                    <LogoutButton />
                 </DashboardLayout>
             </main>
         </>
