@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head'
 
 import { DataContext } from '@/context/DataContext';
 
