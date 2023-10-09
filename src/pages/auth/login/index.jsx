@@ -11,10 +11,11 @@ export default function Signup() {
     const { isLogged } = useContext(DataContext);
 
     useEffect(() => {
+        const returnTo = router.query.returnTo || "dashboard";
         if (isLogged) {
-            router.push('/dashboard');
+            router.push('/' + returnTo);
         }
-    }, [isLogged]);
+    }, [isLogged, router]);
     
     return (
         <main>

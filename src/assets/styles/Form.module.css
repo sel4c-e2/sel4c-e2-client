@@ -2,7 +2,7 @@
 .form .formRow { padding: 1rem 0; }
 .form .formRow .column {  }
 .form label {display: block; }
-.form input { display: block; }
+.form input { display: block; width: 100%; }
 .form button[type="submit"] {  }
 
 

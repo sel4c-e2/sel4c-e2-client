@@ -3,26 +3,23 @@
 // Falta loading...
 // Falta estilo
 
-import React, { useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { useContext, useEffect, useState } from 'react';
 import { SERVER_URL } from '@/config';
 
 import { DataContext } from '@/context/DataContext';
 
 import style from '@/assets/styles/Form.module.css';
 
-export default function LoginForm() {
-    const router = useRouter();
+export default function EditPasswordForm() {
+    const { fetchUser, user } = useContext(DataContext);
 
-    const { fetchUser } = useContext(DataContext);
-
-    let returnTo;
-    const formAction = SERVER_URL + "/admins/login";
-    const formMethod = "POST";
+    const formAction = SERVER_URL + "/admins/password/" + user.id;
+    const formMethod = "PUT";
     const [formData, setFormData] = useState({
-        email: '',
-        password: ''
+        currentPassword: '',
+        newPassword: ''
     });
+    const [dataChanged, setDataChanged] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const handleInputChange = (e) => {
@@ -46,38 +43,39 @@ export default function LoginForm() {
             });
             if (response.ok) {
                 const data = await response.json();
-                localStorage.setItem("token", data.token);
-                fetchUser(data.token);
-                router.push('/' + returnTo);
+                console.log(data);
+                fetchUser();
             }
         } catch (error) {
             console.error(error);
         }
         setLoading(false);
     }
-    
+
     useEffect(() => {
-        returnTo = router.query.returnTo || "dashboard";
-    }, [returnTo, router]);
+        const cPwdChanged = formData.currentPassword !== '';
+        const nPwdChanged = formData.newPassword !== '';
+        setDataChanged(cPwdChanged && nPwdChanged);
+    }, [formData]);
 
     return (
         <form action={formAction} method={formMethod} onSubmit={handleSubmit} className={`${style.form} ${style.login}`}>
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12'}>
-                    <label htmlFor="email">Correo electrónico</label>
-                    <input id='email' type="email" name="email" value={formData.email} onChange={handleInputChange} />
+                    <label htmlFor="currentPassword">Contraseña actual</label>
+                    <input id='currentPassword' type="password" name="currentPassword" value={formData.currentPassword} onChange={handleInputChange} aria-autocomplete='none' />
                 </div>
             </div>
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12'}>
-                    <label htmlFor="password">Contraseña</label>
-                    <input id='password' type="password" name="password" value={formData.password} onChange={handleInputChange} />
+                    <label htmlFor="newPassword">Nueva contraseña</label>
+                    <input id='newPassword' type="password" name="newPassword" value={formData.newPassword} onChange={handleInputChange} aria-autocomplete='none' />
                 </div>
             </div>
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12 text-center'}>
-                    <button type='submit' disabled={loading}>
-                        Iniciar sesión
+                    <button type='submit' disabled={loading || !dataChanged}>
+                        Modificar datos
                     </button>
                 </div>
             </div>
