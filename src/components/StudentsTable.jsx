@@ -25,29 +25,7 @@ export default function StudentsTable() {
                     }
                 });
                 const data = await response.json();
-                console.log(data.message);
-                console.log(data.users);
-                console.log(data.users[0]);
-    
-                const updatedUsers = await Promise.all(
-                    data.users.map(async (user) => {
-                        try {
-                            const countryResponse = await fetch(`${SERVER_URL}/countries/${user.country_id}`);
-                            const countryData = await countryResponse.json();
-                            const universityResponse = await fetch(`${SERVER_URL}/universities/${user.university_id}`);
-                            const universityData = await universityResponse.json();
-                            return {
-                                ...user,
-                                country_name: countryData.name,
-                                university_name: universityData.name
-                            };
-                        } catch (error) {
-                            console.error('Error fetching country or university data:', error);
-                            return user; // Return the user without additional info if there's an error
-                        }
-                    })
-                );
-                setUsers(updatedUsers);
+                setUsers(data.users);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -85,7 +63,7 @@ export default function StudentsTable() {
                 </> : <>
                     {users && users.length > 0 ? <>
                         {users.map(user => (
-                            <div className={styles.tableRow + ' row'} key={user.user_id}>
+                            <Link href={"/dashboard/alumnos/" + user.user_id} className={styles.tableRow + ' row'} key={user.user_id}>
                                 <div className={styles.tableCol + ' col'}>
                                     <p>{user.name}</p>
                                 </div>
@@ -99,20 +77,12 @@ export default function StudentsTable() {
                                     <p>{user.gender}</p>
                                 </div>
                                 <div className={styles.tableCol + ' col'}>
-                                    {user.country_name ? <p>
-                                        {user.country_name}
-                                    </p> : <p>
-                                        Cargando pais...
-                                    </p>}
+                                    <p>{user.country_name}</p>
                                 </div>
                                 <div className={styles.tableCol + ' col'}>
-                                    {user.university_name ? <p>
-                                        {user.university_name}
-                                    </p> : <p>
-                                        Cargando universidad...
-                                    </p>}
+                                    <p>{user.university_name}</p>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </> : <>
                         <p>No se encontraron alumnos</p>

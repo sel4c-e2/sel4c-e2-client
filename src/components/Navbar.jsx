@@ -26,9 +26,6 @@ export default function Navbar() {
               </li>
               {isLogged ? <>
                 <li>
-                  <Link href={"/account"}>Mi cuenta</Link>
-                </li>
-                <li>
                   <Link href={"/dashboard"} className={`${styles.btn} ${styles.dashboardBtn}`}>Panel</Link>
                 </li>
               </> : <>

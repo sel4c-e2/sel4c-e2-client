@@ -47,9 +47,9 @@ export default function SignupForm() {
             });
             if (response.ok) {
                 const data = await response.json();
-                localStorage.setItem("token", data.token);
-                fetchUser(data.token);
-                router.push('/dashboard');
+                // localStorage.setItem("token", data.token);
+                // fetchUser(data.token);
+                router.push('/auth/login');
             }
         } catch (error) {
             console.error(error);

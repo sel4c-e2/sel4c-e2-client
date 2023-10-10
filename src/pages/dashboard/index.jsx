@@ -27,8 +27,22 @@ export default function Dashboard() {
             <main className={styles.main}>
                 <DashboardLayout>
                     <p>Dashboard</p>
+                    <Link href={"/account"}>
+                        Mi cuenta {"->"}
+                    </Link>
+                    <br />
                     <Link href={"/dashboard/alumnos"}>
                         Alumnos {"->"}
+                    </Link>
+                    {user.super ? <>
+                        <br />
+                        <Link href={"/dashboard/profesores"}>
+                            Profesores {"->"}
+                        </Link>
+                    </> : ''}
+                    <br />
+                    <Link href={"/dashboard/actividades"}>
+                        Actividades {"->"}
                     </Link>
                     <br />
                     <br />
