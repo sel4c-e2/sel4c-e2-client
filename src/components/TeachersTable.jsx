@@ -94,14 +94,6 @@ export default function TeachersTable() {
         }
     };
 
-    const countSuperAdmins = () => {
-        return admins.filter(admin => admin.super).length;
-    };
-    
-    const countAccessAdmins = () => {
-        return admins.filter(admin => admin.access).length;
-    };
-
     useEffect(() => {
         fetchData();
     }, []);

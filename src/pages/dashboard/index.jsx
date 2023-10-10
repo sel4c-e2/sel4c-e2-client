@@ -45,6 +45,14 @@ export default function Dashboard() {
                         Actividades {"->"}
                     </Link>
                     <br />
+                    <Link href={"/dashboard/cuestionario/inicial"}>
+                        Cuestionario inicial {"->"}
+                    </Link>
+                    <br />
+                    <Link href={"/dashboard/cuestionario/final"}>
+                        Cuestionario final {"->"}
+                    </Link>
+                    <br />
                     <br />
                     <LogoutButton />
                 </DashboardLayout>
