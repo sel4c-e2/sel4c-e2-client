@@ -27,7 +27,9 @@ export default function Students() {
                 <ActivitiesLayout>
                     <h3>Actividades</h3>
                     <div className={style.content}>
-                        <div className={style.contentContainer + ' container'}></div>
+                        <div className={style.contentContainer + ' container'}>
+                            hola
+                        </div>
                     </div>
                 </ActivitiesLayout>
             </main>
