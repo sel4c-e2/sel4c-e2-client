@@ -7,7 +7,8 @@ import { SERVER_URL } from '@/config'
 
 import { DataContext } from '@/context/DataContext'
 
-import ActivitiesLayout from '@/components/Layouts/ActivitiesLayout'
+import DashboardLayout from '@/components/Layouts/DashboardLayout'
+import StartQuizGraph from '@/components/Graphs/StartQuizGraph'
 
 import styles from '@/assets/styles/Page.module.css'
 
@@ -44,14 +45,14 @@ export default function StartQuiz() {
                 <title>Cuestionario inicial</title>
             </Head>
             <main className={styles.main}>
-                <ActivitiesLayout>
+                <DashboardLayout>
                     <div className={styles.row + ' row'}>
                         <div className={styles.col + ' col'}>
                             <h3>Cuestionario inicial</h3>
                         </div>
-                        <div className={styles.col + ' col'}>
+                        {/* <div className={styles.col + ' col'}>
                             <button>Nueva pregunta</button>
-                        </div>
+                        </div> */}
                     </div>
                     <div className={styles.accordion + ' accordion'}>
                         <div className={styles.accordionItem + ' accordion-item'}>
@@ -62,8 +63,8 @@ export default function StartQuiz() {
                             </h2>
                             <div id="collapseOne" className={styles.accordionContent + " accordion-collapse collapse"}>
                                 <div className={styles.accordionBody + ' accordion-body'}>
-                                {questions && questions.length > 0 && questions.map(question => (
-                                    <div className={styles.row + ' row'}>
+                                {(questions && questions.length > 0) ? questions.map(question => (
+                                    question.type === "Pasion y Compromiso" && <div className={styles.row + ' row'}>
                                         <div className={styles.col + ' col'}>
                                             <p>{question.id}</p>
                                         </div>
@@ -71,13 +72,12 @@ export default function StartQuiz() {
                                             <p>{question.question}</p>
                                         </div>
                                         <div className={styles.col + ' col'}>
-                                            <input type="checkbox" name="" id="" checked={question.hidden} />
-                                        </div>
-                                        <div className={styles.col + ' col'}>
-                                            <p>{question.type}</p>
+                                            <input type="checkbox" name="" id="" checked={!question.hidden} />
                                         </div>
                                     </div>
-                                ))} 
+                                )) : <p>
+                                    No hay preguntas en esta categoria
+                                </p>}
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,21 @@ export default function StartQuiz() {
                             </h2>
                             <div id="collapseTwo" className={styles.accordionContent + " accordion-collapse collapse"}>
                                 <div className={styles.accordionBody + ' accordion-body'}>
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    {(questions && questions.length > 0) ? questions.map(question => (
+                                        question.type === "Habilidades Interpersonales y Trabajo en Equipo" && <div className={styles.row + ' row'}>
+                                            <div className={styles.col + ' col'}>
+                                                <p>{question.id}</p>
+                                            </div>
+                                            <div className={styles.col + ' col'}>
+                                                <p>{question.question}</p>
+                                            </div>
+                                            <div className={styles.col + ' col'}>
+                                                <input type="checkbox" name="" id="" checked={!question.hidden} />
+                                            </div>
+                                        </div>
+                                    )) : <p>
+                                        No hay preguntas en esta categoria
+                                    </p>}
                                 </div>
                             </div>
                         </div>
@@ -101,7 +115,21 @@ export default function StartQuiz() {
                             </h2>
                             <div id="collapseThree" className={styles.accordionContent + " accordion-collapse collapse"}>
                                 <div className={styles.accordionBody + ' accordion-body'}>
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    {(questions && questions.length > 0) ? questions.map(question => (
+                                        question.type === "Pensamiento Analitico" && <div className={styles.row + ' row'}>
+                                            <div className={styles.col + ' col'}>
+                                                <p>{question.id}</p>
+                                            </div>
+                                            <div className={styles.col + ' col'}>
+                                                <p>{question.question}</p>
+                                            </div>
+                                            <div className={styles.col + ' col'}>
+                                                <input type="checkbox" name="" id="" checked={!question.hidden} />
+                                            </div>
+                                        </div>
+                                    )) : <p>
+                                        No hay preguntas en esta categoria
+                                    </p>}
                                 </div>
                             </div>
                         </div>
@@ -113,12 +141,27 @@ export default function StartQuiz() {
                             </h2>
                             <div id="collapseFour" className={styles.accordionContent + " accordion-collapse collapse"}>
                                 <div className={styles.accordionBody + ' accordion-body'}>
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    {(questions && questions.length > 0) ? questions.map(question => (
+                                        question.type === "Investigacion y Resolucion de Problemas" && <div className={styles.row + ' row'}>
+                                            <div className={styles.col + ' col'}>
+                                                <p>{question.id}</p>
+                                            </div>
+                                            <div className={styles.col + ' col'}>
+                                                <p>{question.question}</p>
+                                            </div>
+                                            <div className={styles.col + ' col'}>
+                                                <input type="checkbox" name="" id="" checked={!question.hidden} />
+                                            </div>
+                                        </div>
+                                    )) : <p>
+                                        No hay preguntas en esta categoria
+                                    </p>}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </ActivitiesLayout>
+                    <StartQuizGraph />
+                </DashboardLayout>
             </main>
         </>
     )

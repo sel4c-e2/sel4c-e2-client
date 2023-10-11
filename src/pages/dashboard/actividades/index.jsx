@@ -8,7 +8,7 @@ import { DataContext } from '@/context/DataContext'
 
 import ActivitiesLayout from '@/components/Layouts/ActivitiesLayout'
 
-import styles from '@/assets/styles/Page.module.css'
+import style from '@/assets/styles/Page.module.css'
 
 export default function Students() {
     const router = useRouter();
@@ -23,9 +23,12 @@ export default function Students() {
             <Head>
                 <title>Actividades</title>
             </Head>
-            <main className={styles.main}>
+            <main className={style.main}>
                 <ActivitiesLayout>
                     <h3>Actividades</h3>
+                    <div className={style.content}>
+                        <div className={style.contentContainer + ' container'}></div>
+                    </div>
                 </ActivitiesLayout>
             </main>
         </>
