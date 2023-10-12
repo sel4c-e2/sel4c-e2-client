@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { DataContext } from '@/context/DataContext'
 
 import ActivitiesLayout from '@/components/Layouts/ActivitiesLayout'
+import Activity from '@/components/Activity'
 
 import style from '@/assets/styles/Page.module.css'
 
@@ -26,10 +27,10 @@ export default function Students() {
             <main className={style.main}>
                 <ActivitiesLayout>
                     <h3>Actividades</h3>
-                    <div className={style.content}>
-                        <div className={style.contentContainer + ' container'}>
-                            hola
-                        </div>
+                    <div className={style.activitiesContainer + ' row'}>
+                        <Activity
+                            name={"Actividad 1"}
+                        />
                     </div>
                 </ActivitiesLayout>
             </main>
