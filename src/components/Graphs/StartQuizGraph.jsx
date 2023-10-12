@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import {Chart,ArcElement} from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import Link from 'next/link'
 import Head from 'next/head'
@@ -12,8 +13,10 @@ import DashboardLayout from '@/components/Layouts/DashboardLayout'
 
 import styles from '@/assets/styles/Page.module.css'
 
+Chart.register(ArcElement)
+
 export default function StartQuizGraph() {
-    const [] = useState(null);
+    const [example, setExample] = useState(null);
 
     const cakeGraph = {
         labels: ['Totalmente De Acuerdo', 'De Acuerdo', 'Ni Acuerdo ni Desacuerdo', 'Desacuerdo', 'Totalmente en Desacuerdo'],
@@ -69,31 +72,26 @@ export default function StartQuizGraph() {
 
     
 
-    useEffect(() => {
+    // useEffect(() => {
         
-    }, []);
+    // }, []);
     
     return (
-        <div>
-            <DashboardLayout>
-            <div className={styles.pageContent}>
-                <h1>¡Hola!</h1>
-                <div className={styles.chartContainer}>
-                    <div className={styles.chart}>
-                        <Doughnut data={cakeGraph} />
-                    </div>
-                    <div className={styles.chart}>
-                        <Doughnut data={cakeGraph2} />
-                    </div>
-                    <div className={styles.chart}>
-                        <Doughnut data={cakeGraph3} />
-                    </div>
-                    <div className={styles.chart}>
-                        <Doughnut data={cakeGraph4} />
-                    </div>
+        <div className={styles.pageContent}>
+            <div className={styles.chartContainer}>
+                <div className={styles.chart}>
+                    <Doughnut data={cakeGraph} />
+                </div>
+                <div className={styles.chart}>
+                    <Doughnut data={cakeGraph2} />
+                </div>
+                <div className={styles.chart}>
+                    <Doughnut data={cakeGraph3} />
+                </div>
+                <div className={styles.chart}>
+                    <Doughnut data={cakeGraph4} />
                 </div>
             </div>
-            </DashboardLayout>
         </div>
     );
 }
