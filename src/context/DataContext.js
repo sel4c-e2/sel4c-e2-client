@@ -5,6 +5,13 @@ const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
 }
 
+function formatInstructions(instructions, maxLength) {
+    if (instructions.length > maxLength) {
+        return instructions.slice(0, maxLength) + '...';
+    }
+    return instructions;
+}
+
 export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
@@ -62,7 +69,7 @@ export const DataProvider = ({ children }) => {
     }, []);
     
     return (
-        <DataContext.Provider value={{ copyToClipboard, isLogged, setIsLogged, user, setUser, fetchUser, modalActive, setModalActive, modalCloseable, setModalCloseable, isNavbarActive, setIsNavbarActive, toggleNavbar, closeNavbar }}>
+        <DataContext.Provider value={{ copyToClipboard, formatInstructions, isLogged, setIsLogged, user, setUser, fetchUser, modalActive, setModalActive, modalCloseable, setModalCloseable, isNavbarActive, setIsNavbarActive, toggleNavbar, closeNavbar }}>
             {children}
         </DataContext.Provider>
     );

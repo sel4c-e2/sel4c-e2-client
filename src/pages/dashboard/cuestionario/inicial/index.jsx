@@ -160,7 +160,7 @@ export default function StartQuiz() {
                             </div>
                         </div>
                     </div>
-                    <StartQuizGraph />
+                    {/* <StartQuizGraph /> */}
                 </DashboardLayout>
             </main>
         </>
