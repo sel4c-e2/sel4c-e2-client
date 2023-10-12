@@ -7,7 +7,7 @@ import { SERVER_URL } from '@/config'
 
 import { DataContext } from '@/context/DataContext'
 
-import ActivitiesLayout from '@/components/Layouts/ActivitiesLayout'
+import DashboardLayout from '@/components/Layouts/DashboardLayout'
 
 import styles from '@/assets/styles/Page.module.css'
 
@@ -44,7 +44,7 @@ export default function EndQuiz() {
                 <title>Cuestionario final</title>
             </Head>
             <main className={styles.main}>
-                <ActivitiesLayout>
+                <DashboardLayout>
                     <div className={styles.row + ' row'}>
                         <div className={styles.col + ' col'}>
                             <h3>Cuestionario final</h3>
@@ -159,7 +159,7 @@ export default function EndQuiz() {
                             </div>
                         </div>
                     </div>
-                </ActivitiesLayout>
+                </DashboardLayout>
             </main>
         </>
     )
