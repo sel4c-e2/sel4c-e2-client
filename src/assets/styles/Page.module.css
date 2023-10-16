@@ -5,3 +5,5 @@
 .activitiesContainer {  }
 .activitiesContainer .column { background-color: var(--white); border-radius: 1rem; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); overflow-y: auto; }
 .activitiesContainer .column .columnContainer {  }
+
+.backLink { color: var(--text-color); font-size: .9rem; text-decoration: underline; }

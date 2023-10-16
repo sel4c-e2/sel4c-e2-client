@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head'
+import Link from 'next/link';
 
 import { DataContext } from '@/context/DataContext';
 
@@ -27,6 +28,7 @@ export default function Account() {
             </Head>
             <main>
                 <AuthLayout>
+                    <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
                     <h1 className={style.title}>{user.name} {user.lastname}</h1>
                     <EditProfileForm />
                     <hr />
