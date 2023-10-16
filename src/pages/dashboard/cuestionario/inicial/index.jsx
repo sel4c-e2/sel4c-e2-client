@@ -12,6 +12,42 @@ import StartQuizGraph from '@/components/Graphs/StartQuizGraph'
 
 import styles from '@/assets/styles/Page.module.css'
 
+const QuestionCategory = ({ category, questions }) => {
+    return (
+      <div className={styles.accordionItem + ' accordion-item'}>
+        <h2 className={styles.accordionHeader + ' accordion-header'}>
+          <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target={`#collapse${category}`} aria-expanded="false" aria-controls={`collapse${category}`}>
+            {category}
+          </button>
+        </h2>
+        <div id={`collapse${category}`} className={styles.accordionContent + " accordion-collapse collapse"}>
+          <div className={styles.accordionBody + ' accordion-body'}>
+            {(questions && questions.length > 0) ? questions.map(question => (
+              question.type === category && 
+              <div className={styles.row + ' row'}>
+                <div className={styles.col + ' col'}>
+                  <p>{question.id}</p>
+                </div>
+                <div className={styles.col + ' col'}>
+                  <p>{question.question}</p>
+                </div>
+                <div className={styles.col + ' col'}>
+                  <input type="checkbox" name="" id="" checked={!question.hidden} />
+                  <button>Ocultar</button>
+                  <button>Editar</button>
+                  <button>Eliminar</button>
+                </div>
+              </div>
+            )) : <p>
+              No hay preguntas en esta categoria
+            </p>}
+          </div>
+        </div>
+      </div>
+    )
+  }
+  
+
 export default function StartQuiz() {
     const router = useRouter();
     const { isLogged } = useContext(DataContext);
@@ -40,129 +76,25 @@ export default function StartQuiz() {
         }
     }, [isLogged, router]);
     return (
-        <>
-            <Head>
-                <title>Cuestionario inicial</title>
-            </Head>
-            <main className={styles.main}>
-                <DashboardLayout>
-                    <div className={styles.row + ' row'}>
-                        <div className={styles.col + ' col'}>
-                            <h3>Cuestionario inicial</h3>
-                        </div>
-                        {/* <div className={styles.col + ' col'}>
-                            <button>Nueva pregunta</button>
-                        </div> */}
-                    </div>
-                    <div className={styles.accordion + ' accordion'}>
-                        <div className={styles.accordionItem + ' accordion-item'}>
-                            <h2 className={styles.accordionHeader + ' accordion-header'}>
-                                <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                    Pasion y Compromiso
-                                </button>
-                            </h2>
-                            <div id="collapseOne" className={styles.accordionContent + " accordion-collapse collapse"}>
-                                <div className={styles.accordionBody + ' accordion-body'}>
-                                {(questions && questions.length > 0) ? questions.map(question => (
-                                    question.type === "Pasion y Compromiso" && <div className={styles.row + ' row'}>
-                                        <div className={styles.col + ' col'}>
-                                            <p>{question.id}</p>
-                                        </div>
-                                        <div className={styles.col + ' col'}>
-                                            <p>{question.question}</p>
-                                        </div>
-                                        <div className={styles.col + ' col'}>
-                                            <input type="checkbox" name="" id="" checked={!question.hidden} />
-                                        </div>
-                                    </div>
-                                )) : <p>
-                                    No hay preguntas en esta categoria
-                                </p>}
-                                </div>
+            <>
+                <Head>
+                    <title>Cuestionario inicial</title>
+                </Head>
+                <main className={styles.main}>
+                    <DashboardLayout>
+                        <div className={styles.row + ' row'}>
+                            <div className={styles.col + ' col'}>
+                                <h3>Cuestionario inicial</h3>
                             </div>
                         </div>
-                        <div className={styles.accordionItem + ' accordion-item'}>
-                            <h2 className={styles.accordionHeader + ' accordion-header'}>
-                                <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Habilidades Interpersonales y Trabajo en Equipo
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" className={styles.accordionContent + " accordion-collapse collapse"}>
-                                <div className={styles.accordionBody + ' accordion-body'}>
-                                    {(questions && questions.length > 0) ? questions.map(question => (
-                                        question.type === "Habilidades Interpersonales y Trabajo en Equipo" && <div className={styles.row + ' row'}>
-                                            <div className={styles.col + ' col'}>
-                                                <p>{question.id}</p>
-                                            </div>
-                                            <div className={styles.col + ' col'}>
-                                                <p>{question.question}</p>
-                                            </div>
-                                            <div className={styles.col + ' col'}>
-                                                <input type="checkbox" name="" id="" checked={!question.hidden} />
-                                            </div>
-                                        </div>
-                                    )) : <p>
-                                        No hay preguntas en esta categoria
-                                    </p>}
-                                </div>
-                            </div>
+                        <div className={styles.accordion + ' accordion'}>
+                            <QuestionCategory category="Pasion y Compromiso" questions={questions} />
+                            <QuestionCategory category="Habilidades Interpersonales y Trabajo en Equipo" questions={questions} />
+                            <QuestionCategory category="Pensamiento Analitico" questions={questions} />
+                            <QuestionCategory category="Investigacion y Resolucion de Problemas" questions={questions} />
                         </div>
-                        <div className={styles.accordionItem + ' accordion-item'}>
-                            <h2 className={styles.accordionHeader + ' accordion-header'}>
-                                <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Pensamiento Analitico
-                                </button>
-                            </h2>
-                            <div id="collapseThree" className={styles.accordionContent + " accordion-collapse collapse"}>
-                                <div className={styles.accordionBody + ' accordion-body'}>
-                                    {(questions && questions.length > 0) ? questions.map(question => (
-                                        question.type === "Pensamiento Analitico" && <div className={styles.row + ' row'}>
-                                            <div className={styles.col + ' col'}>
-                                                <p>{question.id}</p>
-                                            </div>
-                                            <div className={styles.col + ' col'}>
-                                                <p>{question.question}</p>
-                                            </div>
-                                            <div className={styles.col + ' col'}>
-                                                <input type="checkbox" name="" id="" checked={!question.hidden} />
-                                            </div>
-                                        </div>
-                                    )) : <p>
-                                        No hay preguntas en esta categoria
-                                    </p>}
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.accordionItem + ' accordion-item'}>
-                            <h2 className={styles.accordionHeader + ' accordion-header'}>
-                                <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    Investigacion y Resolucion de Problemas
-                                </button>
-                            </h2>
-                            <div id="collapseFour" className={styles.accordionContent + " accordion-collapse collapse"}>
-                                <div className={styles.accordionBody + ' accordion-body'}>
-                                    {(questions && questions.length > 0) ? questions.map(question => (
-                                        question.type === "Investigacion y Resolucion de Problemas" && <div className={styles.row + ' row'}>
-                                            <div className={styles.col + ' col'}>
-                                                <p>{question.id}</p>
-                                            </div>
-                                            <div className={styles.col + ' col'}>
-                                                <p>{question.question}</p>
-                                            </div>
-                                            <div className={styles.col + ' col'}>
-                                                <input type="checkbox" name="" id="" checked={!question.hidden} />
-                                            </div>
-                                        </div>
-                                    )) : <p>
-                                        No hay preguntas en esta categoria
-                                    </p>}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* <StartQuizGraph /> */}
-                </DashboardLayout>
-            </main>
-        </>
-    )
+                    </DashboardLayout>
+                </main>
+            </>
+        )
 }
