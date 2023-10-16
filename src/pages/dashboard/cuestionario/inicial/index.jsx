@@ -12,41 +12,48 @@ import StartQuizGraph from '@/components/Graphs/StartQuizGraph'
 
 import styles from '@/assets/styles/Page.module.css'
 
+function formatCatName(name) {
+  return name.replace(/\s+/g, '');
+}
+
+
 const QuestionCategory = ({ category, questions }) => {
-    return (
-      <div className={styles.accordionItem + ' accordion-item'}>
-        <h2 className={styles.accordionHeader + ' accordion-header'}>
-          <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target={`#collapse${category}`} aria-expanded="false" aria-controls={`collapse${category}`}>
-            {category}
-          </button>
-        </h2>
-        <div id={`collapse${category}`} className={styles.accordionContent + " accordion-collapse collapse"}>
-          <div className={styles.accordionBody + ' accordion-body'}>
-            {(questions && questions.length > 0) ? questions.map(question => (
-              question.type === category && 
-              <div className={styles.row + ' row'}>
-                <div className={styles.col + ' col'}>
-                  <p>{question.id}</p>
-                </div>
-                <div className={styles.col + ' col'}>
-                  <p>{question.question}</p>
-                </div>
-                <div className={styles.col + ' col'}>
-                  <input type="checkbox" name="" id="" checked={!question.hidden} />
-                  <button>Ocultar</button>
-                  <button>Editar</button>
-                  <button>Eliminar</button>
-                </div>
+  const formattedCategory = formatCatName(category);
+
+  return (
+    <div className={styles.accordionItem + ' accordion-item'}>
+      <h2 className={styles.accordionHeader + ' accordion-header'}>
+        <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target={`#collapse${formattedCategory}`} aria-expanded="false" aria-controls={`collapse${formattedCategory}`}>
+          {category}
+        </button>
+      </h2>
+      <div id={`collapse${formattedCategory}`} className={styles.accordionContent + " accordion-collapse collapse"}>
+        <div className={styles.accordionBody + ' accordion-body'}>
+          {(questions && questions.length > 0) ? questions.map(question => (
+            question.type === category && 
+            <div className={styles.row + ' row'}>
+              <div className={styles.col + ' col'}>
+                <p>{question.id}</p>
               </div>
-            )) : <p>
-              No hay preguntas en esta categoria
-            </p>}
-          </div>
+              <div className={styles.col + ' col'}>
+                <p>{question.question}</p>
+              </div>
+              <div className={styles.col + ' col'}>
+                <input type="checkbox" name="" id="" checked={!question.hidden} />
+                <button>Ocultar</button>
+                <button>Editar</button>
+                <button>Eliminar</button>
+              </div>
+            </div>
+          )) : <p>
+            No hay preguntas en esta categoria
+          </p>}
         </div>
       </div>
-    )
-  }
-  
+    </div>
+  )
+}
+
 
 export default function StartQuiz() {
     const router = useRouter();
