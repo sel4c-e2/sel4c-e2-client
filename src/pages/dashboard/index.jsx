@@ -11,6 +11,7 @@ import DashboardLayout from '@/components/Layouts/DashboardLayout'
 import LogoutButton from '@/components/Forms/LogoutButton'
 
 import styles from '@/assets/styles/Home.module.css'
+import stylesPage from '@/assets/styles/Page.module.css'
 import stylesDashboard from '@/assets/styles/Dashboard.module.css'
 
 export default function Dashboard() {
@@ -18,6 +19,7 @@ export default function Dashboard() {
     const { isLogged, user } = useContext(DataContext);
     const [usersCount, setUsersCount] = useState(null);
     const [adminsCount, setAdminsCount] = useState(null);
+    const [activitiesCount, setActivitiesCount] = useState(null);
     useEffect(() => {
         if (!isLogged) {
             router.push("/auth/login?returnTo=dashboard");
@@ -25,6 +27,10 @@ export default function Dashboard() {
         fetch(`${SERVER_URL}/users/count`)
             .then(response => response.json())
             .then(data => setUsersCount(data.count))
+            .catch(error => console.error('Error fetching students count:', error));
+        fetch(`${SERVER_URL}/activities/count`)
+            .then(response => response.json())
+            .then(data => setActivitiesCount(data.count))
             .catch(error => console.error('Error fetching students count:', error));
         if (user.super) {
             fetch(`${SERVER_URL}/admins/count`)
@@ -86,7 +92,17 @@ export default function Dashboard() {
                     <div className={stylesDashboard.card + ' col-12 col-sm-6'}>
                         <div className={stylesDashboard.contentCard}>
                             <div className={stylesDashboard.containerCard + ' container'}>
-                                <p>Actividades</p>
+                                <div>
+                                    <p className={stylesDashboard.bigText}>Actividades</p>
+                                    <h3>
+                                        <Link href={"/dashboard/actividades"}>
+                                            {activitiesCount !== null ? activitiesCount : 'Cargando...'} actividades
+                                        </Link>
+                                    </h3>
+                                </div>
+                                <Link href={"/dashboard/actividades"} className={stylesPage.btnType1}>
+                                    Ver actividades
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -94,44 +110,21 @@ export default function Dashboard() {
                         <div className={stylesDashboard.contentCard}>
                             <div className={stylesDashboard.containerCard + ' container'}>
                                 <p className={stylesDashboard.bigText}>Cuestionarios</p>
+                                <div className='row'>
+                                    <div className='col-6'>
+                                        <Link href={"/dashboard/cuestionario/inicial"} className={stylesPage.btnType1}>
+                                            Cuestionario inicial
+                                        </Link>
+                                    </div>
+                                    <div className='col-6'>
+                                        <Link href={"/dashboard/cuestionario/final"} className={stylesPage.btnType1}>
+                                            Cuestionario final
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {/* <div className={stylesDashboard.card + ' col-12 col-sm-4'}>
-                        <div className={stylesDashboard.contentCard}>
-                            <div className={stylesDashboard.containerCard + ' container'}>
-                                <p>Profesores</p>
-                            </div>
-                        </div>
-                    </div> */}
-                    {/* <Link href={"/account"}>
-                        Mi cuenta {"->"}
-                    </Link>
-                    <br />
-                    <Link href={"/dashboard/alumnos"}>
-                        Alumnos {"->"}
-                    </Link>
-                    {user.super ? <>
-                        <br />
-                        <Link href={"/dashboard/profesores"}>
-                            Profesores {"->"}
-                        </Link>
-                    </> : ''}
-                    <br />
-                    <Link href={"/dashboard/actividades"}>
-                        Actividades {"->"}
-                    </Link>
-                    <br />
-                    <Link href={"/dashboard/cuestionario/inicial"}>
-                        Cuestionario inicial {"->"}
-                    </Link>
-                    <br />
-                    <Link href={"/dashboard/cuestionario/final"}>
-                        Cuestionario final {"->"}
-                    </Link>
-                    <br />
-                    <br />
-                    <LogoutButton /> */}
                 </DashboardLayout>
             </main>
         </>

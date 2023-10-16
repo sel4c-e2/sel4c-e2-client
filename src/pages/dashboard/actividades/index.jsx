@@ -49,6 +49,7 @@ export default function Activities() {
             </Head>
             <main className={style.main}>
                 <ActivitiesLayout>
+                    <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
                     <h3>Actividades</h3>
                     {loading ? <p>
                         Cargando actividades...

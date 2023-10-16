@@ -6,10 +6,10 @@ import Image from 'next/image'
 
 import { DataContext } from '@/context/DataContext'
 
-import DashboardLayout from '@/components/Layouts/DashboardLayout'
+import PageLayout from '@/components/Layouts/PageLayout'
 import StudentsTable from '@/components/StudentsTable'
 
-import styles from '@/assets/styles/Page.module.css'
+import style from '@/assets/styles/Page.module.css'
 
 export default function Students() {
     const router = useRouter();
@@ -24,11 +24,14 @@ export default function Students() {
             <Head>
                 <title>Alumnos</title>
             </Head>
-            <main className={styles.main}>
-                <DashboardLayout>
-                    <h3>Alumnos</h3>
+            <main className={style.main}>
+                <PageLayout>
+                    <div>
+                        <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
+                        <h4>Alumnos</h4>
+                    </div>
                     <StudentsTable />
-                </DashboardLayout>
+                </PageLayout>
             </main>
         </>
     )

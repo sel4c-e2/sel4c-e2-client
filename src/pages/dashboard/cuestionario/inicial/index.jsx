@@ -7,10 +7,10 @@ import { SERVER_URL } from '@/config'
 
 import { DataContext } from '@/context/DataContext'
 
-import DashboardLayout from '@/components/Layouts/DashboardLayout'
+import PageLayout from '@/components/Layouts/PageLayout'
 import StartQuizGraph from '@/components/Graphs/StartQuizGraph'
 
-import styles from '@/assets/styles/Page.module.css'
+import style from '@/assets/styles/Page.module.css'
 
 function formatCatName(name) {
   return name.replace(/\s+/g, '');
@@ -21,24 +21,24 @@ const QuestionCategory = ({ category, questions }) => {
   const formattedCategory = formatCatName(category);
 
   return (
-    <div className={styles.accordionItem + ' accordion-item'}>
-      <h2 className={styles.accordionHeader + ' accordion-header'}>
-        <button type='button' className={styles.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target={`#collapse${formattedCategory}`} aria-expanded="false" aria-controls={`collapse${formattedCategory}`}>
+    <div className={style.accordionItem + ' accordion-item'}>
+      <h2 className={style.accordionHeader + ' accordion-header'}>
+        <button type='button' className={style.accordionBtn + ' accordion-button collapsed'} data-bs-toggle="collapse" data-bs-target={`#collapse${formattedCategory}`} aria-expanded="false" aria-controls={`collapse${formattedCategory}`}>
           {category}
         </button>
       </h2>
-      <div id={`collapse${formattedCategory}`} className={styles.accordionContent + " accordion-collapse collapse"}>
-        <div className={styles.accordionBody + ' accordion-body'}>
+      <div id={`collapse${formattedCategory}`} className={style.accordionContent + " accordion-collapse collapse"}>
+        <div className={style.accordionBody + ' accordion-body'}>
           {(questions && questions.length > 0) ? questions.map(question => (
             question.type === category && 
-            <div className={styles.row + ' row'}>
-              <div className={styles.col + ' col'}>
+            <div className={style.row + ' row'}>
+              <div className={style.col + ' col'}>
                 <p>{question.id}</p>
               </div>
-              <div className={styles.col + ' col'}>
+              <div className={style.col + ' col'}>
                 <p>{question.question}</p>
               </div>
-              <div className={styles.col + ' col'}>
+              <div className={style.col + ' col'}>
                 <input type="checkbox" name="" id="" checked={!question.hidden} />
                 <button>Ocultar</button>
                 <button>Editar</button>
@@ -87,20 +87,21 @@ export default function StartQuiz() {
                 <Head>
                     <title>Cuestionario inicial</title>
                 </Head>
-                <main className={styles.main}>
-                    <DashboardLayout>
-                        <div className={styles.row + ' row'}>
-                            <div className={styles.col + ' col'}>
-                                <h3>Cuestionario inicial</h3>
+                <main className={style.main}>
+                    <PageLayout>
+                        <div className={style.row + ' row'}>
+                            <div className={style.col + ' col'}>
+                                <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
+                                <h4>Cuestionario inicial</h4>
                             </div>
                         </div>
-                        <div className={styles.accordion + ' accordion'}>
+                        <div className={style.accordion + ' accordion'}>
                             <QuestionCategory category="Pasion y Compromiso" questions={questions} />
                             <QuestionCategory category="Habilidades Interpersonales y Trabajo en Equipo" questions={questions} />
                             <QuestionCategory category="Pensamiento Analitico" questions={questions} />
                             <QuestionCategory category="Investigacion y Resolucion de Problemas" questions={questions} />
                         </div>
-                    </DashboardLayout>
+                    </PageLayout>
                 </main>
             </>
         )

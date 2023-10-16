@@ -2,8 +2,15 @@
 
 .table {  }
 
+.section { background-color: var(--white); border-radius: 1rem; position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); width: 85%; height: 80vh; overflow: auto; }
+.section .sectionContainer {  }
+.section .sectionContainer .content { padding: 1.5rem 0; }
+.section .sectionContainer .content h1 { text-align: center; font-size: 1.5rem; color: var(--text-color); line-height: 1; font-weight: 400; margin-bottom: .5rem; }
+
 .activitiesContainer {  }
 .activitiesContainer .column { background-color: var(--white); border-radius: 1rem; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); overflow-y: auto; }
 .activitiesContainer .column .columnContainer {  }
 
 .backLink { color: var(--text-color); font-size: .9rem; text-decoration: underline; }
+
+.btnType1 { display: block; width: 100%; text-align: center; background-color: var(--sec-color); border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 1rem; font-size: 1.1rem; line-height: 1; padding: .5rem 1rem; }
