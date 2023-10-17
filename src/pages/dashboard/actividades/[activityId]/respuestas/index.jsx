@@ -13,7 +13,7 @@ import ActivityData from '@/components/ActivityData'
 
 import style from '@/assets/styles/Page.module.css'
 
-export default function Activity() {
+export default function ActivityAnswers() {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
     const { activityId } = router.query;
@@ -22,7 +22,7 @@ export default function Activity() {
         if (activityId) {
             setLoading(false);
             if (!isLogged) {
-                router.push("/auth/login?returnTo=dashboard/actividades/" + router.query.activityId);
+                router.push("/auth/login?returnTo=dashboard/actividades/" + router.query.activityId + "/respuestas");
             }
         }
     }, [isLogged, router, activityId]);
@@ -32,7 +32,8 @@ export default function Activity() {
                 {loading ? <p>
                     Cargando...
                 </p> : <>
-                    <ActivityData activityId={activityId} />
+                    Respuestas
+                    {/* <ActivityData activityId={activityId} /> */}
                 </>}
             </PageLayout>
         </>

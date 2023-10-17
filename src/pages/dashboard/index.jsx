@@ -89,7 +89,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className={stylesDashboard.card + ' col-12 col-sm-6'}>
+                    <div className={stylesDashboard.card + ' col-12 col-sm-4'}>
                         <div className={stylesDashboard.contentCard}>
                             <div className={stylesDashboard.containerCard + ' container'}>
                                 <div>
@@ -106,19 +106,36 @@ export default function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className={stylesDashboard.card + ' col-12 col-sm-6'}>
+                    <div className={stylesDashboard.card + ' col-12 col-sm-4'}>
                         <div className={stylesDashboard.contentCard}>
                             <div className={stylesDashboard.containerCard + ' container'}>
-                                <p className={stylesDashboard.bigText}>Cuestionarios</p>
+                                <p className={stylesDashboard.bigText}>Cuestionario inicial</p>
                                 <div className='row'>
-                                    <div className='col-6'>
+                                    <div className='col-12'>
                                         <Link href={"/dashboard/cuestionario/inicial"} className={stylesPage.btnType1}>
-                                            Cuestionario inicial
+                                            Ver preguntas
+                                        </Link>
+                                        <br />
+                                        <Link href={"/dashboard/cuestionario/inicial/respuestas"} className={stylesPage.btnType2}>
+                                            Ver resultados
                                         </Link>
                                     </div>
-                                    <div className='col-6'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={stylesDashboard.card + ' col-12 col-sm-4'}>
+                        <div className={stylesDashboard.contentCard}>
+                            <div className={stylesDashboard.containerCard + ' container'}>
+                                <p className={stylesDashboard.bigText}>Cuestionario final</p>
+                                <div className='row'>
+                                    <div className='col-12'>
                                         <Link href={"/dashboard/cuestionario/final"} className={stylesPage.btnType1}>
-                                            Cuestionario final
+                                            Ver preguntas
+                                        </Link>
+                                        <br />
+                                        <Link href={"/dashboard/cuestionario/final/respuestas"} className={stylesPage.btnType2}>
+                                            Ver resultados
                                         </Link>
                                     </div>
                                 </div>

@@ -7,15 +7,19 @@
 .section .sectionContainer .content { padding: 1.5rem 0; }
 .section .sectionContainer .content h1 { text-align: center; font-size: 1.5rem; color: var(--text-color); line-height: 1; font-weight: 400; margin-bottom: .5rem; }
 
-.activitiesContainer {  }
-.activitiesContainer .column { background-color: var(--white); border-radius: 1rem; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); overflow-y: auto; }
-.activitiesContainer .column .columnContainer {  }
+.activitiesContainer { gap: 1.5rem; justify-content: space-between; align-items: stretch; }
+.activitiesContainer .column { background-color: var(--white); border-radius: 1rem; box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, 0.06); overflow-y: auto; width: 30%; }
+.activitiesContainer .column .columnContainer { padding-top: 1rem; padding-bottom: 1rem; }
+.activitiesContainer .column .columnContainer .columnContent { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; }
+.activitiesContainer .column .columnContainer .columnContent .text { font-size: .9rem; font-weight: 400; line-height: 1.5; margin-bottom: .5rem; color: var(--text-color); }
 
 .backLink { color: var(--text-color); font-size: .9rem; text-decoration: underline; }
 
 .btnType1 { display: block; width: 100%; text-align: center; background-color: var(--sec-color); border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 1rem; font-size: 1.1rem; line-height: 1; padding: .5rem 1rem; }
+.btnType2 { display: block; width: 100%; text-align: center; background-color: var(--pri-color); border: 1px solid rgba(255, 255, 255, .3); border-radius: 1rem; font-size: 1.1rem; line-height: 1; padding: .5rem 1rem; color: var(--inv-text-color); }
 
 .title1 { display: inline-block; background-color: var(--black); font-size: 1.3rem; color: var(--inv-text-color); line-height: 1; font-weight: 400; padding: .5rem 1rem; border-radius: .5rem; margin-bottom: 1rem; }
 .title3 { font-size: 1.1rem; color: var(--text-color); line-height: 1; font-weight: 300; text-decoration: underline; margin-bottom: 1rem; }
+.title4 { font-size: 1.2rem; color: var(--text-color); line-height: 1; font-weight: 500; margin-bottom: 1rem; }
 .bigText { font-size: 1.8rem; color: var(--text-color); line-height: 1; font-weight: 500; margin-bottom: .5rem; }
 .mutedText { font-size: 1rem; color: var(--text-color); font-weight: 300; line-height: 1.7; margin-bottom: .5rem; }

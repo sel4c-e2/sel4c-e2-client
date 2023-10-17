@@ -11,4 +11,5 @@
 .section .sectionContainer .content h2 { text-align: center; font-size: 1.5rem; color: var(--text-color); line-height: 1; font-weight: 400; margin-bottom: .5rem; }
 .section .sectionContainer .content h3 { font-size: 1.1rem; color: var(--text-color); line-height: 1; font-weight: 300; text-decoration: underline; margin-bottom: 1rem; }
 .section .sectionContainer .content h3 a {  }
+
 .section .sectionContainer .content .bigText { font-size: 1.8rem; color: var(--text-color); line-height: 1; font-weight: 500; margin-bottom: .5rem; }

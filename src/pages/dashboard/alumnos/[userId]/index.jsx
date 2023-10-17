@@ -7,11 +7,13 @@ import { SERVER_URL } from '@/config'
 
 import { DataContext } from '@/context/DataContext'
 
+import DashboardLayout from '@/components/Layouts/DashboardLayout'
 import PageLayout from '@/components/Layouts/PageLayout'
 import StudentStartQuizAnswers from '@/components/StudentStartQuizAnswers'
 import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
+import styleDashboard from '@/assets/styles/Dashboard.module.css'
 
 export default function Alumno() {
     const router = useRouter();
@@ -53,47 +55,56 @@ export default function Alumno() {
                 <title>Alumno</title>
             </Head>
             <main className={style.main}>
-                <PageLayout>
+                <DashboardLayout>
                     {loading ? 'Cargando...' : <>
-                        <div className='col-12'>
-                            <BackLink link={"/dashboard/alumnos"} text={"Atras"} />
-                            <br />
-                            <br />
-                            <p className={style.title1}>
-                                {userData.name} {userData.lastname}
-                            </p>
-                            <p className={style.title3 + ' d-inline ms-4'}>
-                                #{userData.user_id}
-                            </p>
+                    <div className={styleDashboard.mainCard + ' col-12'}>
+                        <div className={styleDashboard.contentCard}>
+                            <div className={styleDashboard.containerCard + ' container'}>
+                                <div className='row'>
+                                    <div className='col-12'>
+                                        <BackLink link={"/dashboard/alumnos"} text={"Atras"} />
+                                        <br />
+                                        <br />
+                                        <p className={style.title1}>
+                                            {userData.name} {userData.lastname}
+                                        </p>
+                                        <p className={style.title3 + ' d-inline ms-4'}>
+                                            #{userData.user_id}
+                                        </p>
+                                    </div>
+                                    <div className='col-3'>
+                                        <p className={style.mutedText}>
+                                            Edad:
+                                            <br />
+                                            {userData.age} años
+                                        </p>
+                                    </div>
+                                    <div className='col-3'>
+                                        <p className={style.mutedText}>
+                                            Genero:
+                                            <br />
+                                            {userData.gender}
+                                        </p>
+                                    </div>
+                                    <div className='col-3'>
+                                        <p className={style.mutedText}>
+                                            Pais:
+                                            <br />
+                                            {userData.country_name}
+                                        </p>
+                                    </div>
+                                    <div className='col-3'>
+                                        <p className={style.mutedText}>
+                                            Universidad:
+                                            <br />
+                                            {userData.university_name}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className='col-3'>
-                            <p className={style.mutedText}>
-                                Edad:
-                                <br />
-                                {userData.age} años
-                            </p>
-                        </div>
-                        <div className='col-3'>
-                            <p className={style.mutedText}>
-                                Genero:
-                                <br />
-                                {userData.gender}
-                            </p>
-                        </div>
-                        <div className='col-3'>
-                            <p className={style.mutedText}>
-                                Pais:
-                                <br />
-                                {userData.country_name}
-                            </p>
-                        </div>
-                        <div className='col-3'>
-                            <p className={style.mutedText}>
-                                Universidad:
-                                <br />
-                                {userData.university_name}
-                            </p>
-                        </div>
+                    </div>
+                        
 
                         {/* <h5>Cuestionario inicial:</h5>
                         <div className='row'>
@@ -106,7 +117,7 @@ export default function Alumno() {
                         </div>
                         {!loading && <StudentStartQuizAnswers userId={userId} />} */}
                     </>}
-                </PageLayout>
+                </DashboardLayout>
             </main>
         </>
     )

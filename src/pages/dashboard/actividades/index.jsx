@@ -51,7 +51,9 @@ export default function Activities() {
             <main className={style.main}>
                 <ActivitiesLayout>
                     <BackLink />
-                    <h3>Actividades</h3>
+                    <br />
+                    <br />
+                    <h4 className={style.title4}>Actividades</h4>
                     {loading ? <p>
                         Cargando actividades...
                     </p> : <div className={style.activitiesContainer + ' row'}>

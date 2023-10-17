@@ -13,6 +13,7 @@ import style from '@/assets/styles/Page.module.css'
 
 export default function ActivityData({activityId}) {
     const [activity, setActivity] = useState(null);
+    const [answers, setAnswers] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchData = async () => {
@@ -32,7 +33,25 @@ export default function ActivityData({activityId}) {
             }
             setLoading(false);
         };
+        const fetchAnswers = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(`${SERVER_URL}/activities/answers/${activityId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                console.log(data);
+                setAnswers(data.answers);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            setLoading(false);
+        };
         fetchData();
+        fetchAnswers();
     }, []);
     return (
         <>
@@ -40,17 +59,19 @@ export default function ActivityData({activityId}) {
                 <p>Loading...</p>
             ) : (
                 activity && (
-                    <div>
-                        <h1>{activity.activity_name}</h1>
-                        <br />
-                        <p>{activity.instructions}</p>
-                        <br />
-                        <p>{activity.questions}</p>
-                        <br />
-                        <p>{activity.answer_type}</p>
-                        <br />
-                        <p>{activity.deliverables}</p>
-                    </div>
+                    <>
+                        <div className=''>
+                            <h1>{activity.activity_name}</h1>
+                            <br />
+                            <p>{activity.instructions}</p>
+                            <br />
+                            <p>{activity.questions}</p>
+                            <br />
+                            <p>{activity.answer_type}</p>
+                            <br />
+                            <p>{activity.deliverables}</p>
+                        </div>
+                    </>
                 )
             )}
         </>
