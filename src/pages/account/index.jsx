@@ -8,6 +8,7 @@ import { DataContext } from '@/context/DataContext';
 import AuthLayout from '@/components/Layouts/AuthLayout';
 import EditProfileForm from '@/components/Forms/EditProfileForm';
 import EditPasswordForm from '@/components/Forms/EditPasswordForm';
+import BackLink from '@/components/Widgets/BackLink';
 
 import style from '@/assets/styles/Page.module.css';
 
@@ -28,7 +29,7 @@ export default function Account() {
             </Head>
             <main>
                 <AuthLayout>
-                    <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
+                    <BackLink />
                     <h1 className={style.title}>{user.name} {user.lastname}</h1>
                     <EditProfileForm />
                     <hr />

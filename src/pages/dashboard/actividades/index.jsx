@@ -9,6 +9,7 @@ import { DataContext } from '@/context/DataContext'
 
 import ActivitiesLayout from '@/components/Layouts/ActivitiesLayout'
 import ActivityLink from '@/components/ActivityLink'
+import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
 
@@ -49,7 +50,7 @@ export default function Activities() {
             </Head>
             <main className={style.main}>
                 <ActivitiesLayout>
-                    <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
+                    <BackLink />
                     <h3>Actividades</h3>
                     {loading ? <p>
                         Cargando actividades...

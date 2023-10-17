@@ -8,6 +8,7 @@ import { DataContext } from '@/context/DataContext'
 
 import PageLayout from '@/components/Layouts/PageLayout'
 import StudentsTable from '@/components/StudentsTable'
+import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
 
@@ -27,7 +28,7 @@ export default function Students() {
             <main className={style.main}>
                 <PageLayout>
                     <div>
-                        <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
+                        <BackLink />
                         <h4>Alumnos</h4>
                     </div>
                     <StudentsTable />

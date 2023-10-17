@@ -9,6 +9,7 @@ import { DataContext } from '@/context/DataContext'
 
 import PageLayout from '@/components/Layouts/PageLayout'
 import StartQuizGraph from '@/components/Graphs/StartQuizGraph'
+import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
 
@@ -91,8 +92,8 @@ export default function StartQuiz() {
                     <PageLayout>
                         <div className={style.row + ' row'}>
                             <div className={style.col + ' col'}>
-                                <Link href={"/dashboard"} className={style.backLink}>{"< Panel"}</Link>
-                                <h4>Cuestionario inicial</h4>
+                              <BackLink />
+                              <h4>Cuestionario inicial</h4>
                             </div>
                         </div>
                         <div className={style.accordion + ' accordion'}>
