@@ -5,6 +5,7 @@
 
 import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { SERVER_URL } from '@/config';
 
 import { DataContext } from '@/context/DataContext';
@@ -62,21 +63,21 @@ export default function SignupForm() {
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12 col-sm-6'}>
                     <label htmlFor="name">Nombre</label>
-                    <input id='name' type="text" name="name" value={formData.name} onChange={handleInputChange} />
+                    <input id='name' type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder='nombre...' />
                 </div>
                 <div className={style.column + ' col-12 col-sm-6'}>
                     <label htmlFor="lastname">Apellido</label>
-                    <input id='lastname' type="text" name="lastname" value={formData.lastname} onChange={handleInputChange} />
+                    <input id='lastname' type="text" name="lastname" value={formData.lastname} onChange={handleInputChange} placeholder='apellido...' />
                 </div>
             </div>
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12 col-sm-6'}>
                     <label htmlFor="email">Correo electrónico</label>
-                    <input id='email' type="email" name="email" value={formData.email} onChange={handleInputChange} />
+                    <input id='email' type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder='abc@abc.com...' />
                 </div>
                 <div className={style.column + ' col-12 col-sm-6'}>
                     <label htmlFor="password">Contraseña</label>
-                    <input id='password' type="password" name="password" value={formData.password} onChange={handleInputChange} />
+                    <input id='password' type="password" name="password" value={formData.password} onChange={handleInputChange} placeholder='contraseña...' />
                 </div>
             </div>
             <div className={style.formRow + ' row'}>
@@ -84,6 +85,7 @@ export default function SignupForm() {
                     <button type='submit' disabled={loading}>
                         Crear cuenta
                     </button>
+                    <p className={style.smallText}>Ya tienes una cuenta? Haz click <Link href={"/auth/login"}>aquí</Link></p>
                 </div>
             </div>
         </form>

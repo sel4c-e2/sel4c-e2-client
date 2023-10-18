@@ -25,7 +25,7 @@ export default function Signup() {
             </Head>
             <main>
                 <AuthLayout>
-                    <h1>Inicia sesion</h1>
+                    <h1>Iniciar sesión</h1>
                     <LoginForm />
                 </AuthLayout>
             </main>

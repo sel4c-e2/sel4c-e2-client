@@ -5,6 +5,7 @@
 
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { SERVER_URL } from '@/config';
 
 import { DataContext } from '@/context/DataContext';
@@ -61,13 +62,13 @@ export default function LoginForm() {
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12'}>
                     <label htmlFor="email">Correo electrónico</label>
-                    <input id='email' type="email" name="email" value={formData.email} onChange={handleInputChange} />
+                    <input id='email' type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder='abc@abc.com...' />
                 </div>
             </div>
             <div className={style.formRow + ' row'}>
                 <div className={style.column + ' col-12'}>
                     <label htmlFor="password">Contraseña</label>
-                    <input id='password' type="password" name="password" value={formData.password} onChange={handleInputChange} />
+                    <input id='password' type="password" name="password" value={formData.password} onChange={handleInputChange} placeholder='contraseña...' />
                 </div>
             </div>
             <div className={style.formRow + ' row'}>
@@ -75,6 +76,10 @@ export default function LoginForm() {
                     <button type='submit' disabled={loading}>
                         Iniciar sesión
                     </button>
+                    <p className={style.smallText}>Aún no tienes cuenta? Haz click <Link href={"/auth/signup"}>aquí</Link></p>
+                    <p className={style.smallText}>Comunicate con un administrador para tener acceso
+                    <br />
+                    <Link href={"https://wa.me/525559975149"} target='_blank'>+52 55 5997 5149</Link></p>
                 </div>
             </div>
         </form>
