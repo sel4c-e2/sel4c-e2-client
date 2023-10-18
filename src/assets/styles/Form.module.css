@@ -1,11 +1,12 @@
 .form {  }
-.form .formRow { padding: 1rem 0; }
+.form .formRow { padding: .5rem 0; }
 .form .formRow .column {  }
 .form label { display: block; width: 100%; font-size: 1rem; color: var(--text-color); margin-bottom: .5rem; }
 .form input { position: relative; display: block; width: 100%; background-color: var(--sec-color); border: 0; border-radius: .5rem; transition: 0.5s; outline: none; padding: .5rem 1rem; color: var(--text-color); font-size: 1.1rem; line-height: 1; }
 .form input::placeholder { color: rgba(17, 17, 17, .45); font-size: 1rem; }
 .form input:focus { box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, .15); }
 .form button[type="submit"] { position: relative; color: var(--inv-text-color); background-color: var(--pri-color); padding: .5rem 1rem; border: 0; border-radius: .5rem; display: block; width: 100%; margin-top: 2rem; transition: 0.5s; font-size: 1rem; }
+.form button[type="submit"]:disabled { filter: brightness(80%); }
 .form button[type="submit"]:hover { box-shadow: 0px 2px 35px 0px rgba(0, 0, 0, .2); }
 .form .smallText { font-size: .9rem; color: var(--text-color); font-weight: 400; margin-bottom: 0; margin-top: .5rem; }
 .form .smallText a { color: var(--pri-color); text-decoration: underline; filter: brightness(70%); transition: 0.5s; }
