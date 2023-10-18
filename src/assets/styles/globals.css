@@ -21,9 +21,10 @@
   --sec-color: #DFEAFF;
   --ter-color: #1B1C2C;
   --accent-color: #292B3E;
-  --info-color: #9CA4B2;
+  --info-color: #D9D9D9;
 
   --text-color: #111111;
+  --text-color-filter: invert(0%) sepia(35%) saturate(1507%) hue-rotate(248deg) brightness(116%) contrast(87%);
   --inv-text-color: #F6F6F6;
   --bg-color: var(--sec-color);
 }

@@ -7,14 +7,35 @@ import { SERVER_URL } from '@/config'
 
 import { DataContext } from '@/context/DataContext'
 
-import DashboardLayout from '@/components/Layouts/DashboardLayout'
+import BackLink from './Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
 
 export default function ActivityData({activityId}) {
+    const { formatDatetime, setModalActive, setModalCloseable, setModalContent } = useContext(DataContext);
     const [activity, setActivity] = useState(null);
     const [answers, setAnswers] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [viewAnswer, setViewAnswer] = useState(null);
+
+    const openModal = () => {
+        setModalActive(true);
+        setModalCloseable(true);
+        setModalContent(
+            <div className='col-12'>
+                <h1>{activity.activity_name}</h1>
+                <br />
+                <p>{activity.instructions}</p>
+                <br />
+                <p>{activity.questions}</p>
+                <br />
+                <p>{activity.answer_type}</p>
+                <br />
+                <p>{activity.deliverables}</p>
+            </div>
+        );
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -60,7 +81,15 @@ export default function ActivityData({activityId}) {
             ) : (
                 activity && (
                     <>
-                        <div className=''>
+                        <div className='col-6'>
+                            <BackLink link="/dashboard/actividades" text="Actividades" />
+                            <br />
+                            <br />
+                        </div>
+                        <div className='col-6 text-end'>
+                            <button onClick={openModal}>Ver instrucciones</button>
+                        </div>
+                        {/* <div className='col-12'>
                             <h1>{activity.activity_name}</h1>
                             <br />
                             <p>{activity.instructions}</p>
@@ -70,6 +99,56 @@ export default function ActivityData({activityId}) {
                             <p>{activity.answer_type}</p>
                             <br />
                             <p>{activity.deliverables}</p>
+                        </div> */}
+                        <div className={style.leftColumn + ' col-12 col-sm-6'}>
+                            <h4 className={style.title4}>
+                                Actividad {activity.id} - {activity.activity_name}
+                            </h4>
+                            {!loading ? (
+                                answers && answers.length > 0 ? (
+                                    answers.map((answer, index) => (
+                                        <div key={index} className='row'>
+                                            <div className='col-1'>
+                                                <p>{answer.user_id}</p>
+                                            </div>
+                                            <div className='col'>
+                                                <p>{answer.name}</p>
+                                            </div>
+                                            <div className='col'>
+                                                <p>{formatDatetime(answer.updated_at)}</p>
+                                            </div>
+                                            <div className='col'>
+                                                <button onClick={() => setViewAnswer(answer.user_id)}>
+                                                    Ver evidencia
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No hay evidencias para esta actividad</p>
+                                )
+                            ) : (
+                                <p>Cargando...</p>
+                            )}
+                            {}
+                        </div>
+                        <div className='col-12 col-sm-6'>
+                            <h4 className={style.title4}>
+                                Evidencia del alumno
+                            </h4>
+                            <div className={style.answerContainer + ' container'}>
+                                <div className={style.answerContent}>
+                                    {viewAnswer ? (
+                                        answers.map((answer, index) => (
+                                            answer.user_id === viewAnswer && (
+                                                <p>{answer.answer}</p>
+                                            )
+                                        ))
+                                    ) : (
+                                        <p>Haz click en "Ver evidencia" para ver la evidencia de un alumno</p>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </>
                 )

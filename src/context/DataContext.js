@@ -12,6 +12,21 @@ function formatInstructions(instructions, maxLength) {
     return instructions;
 }
 
+function formatDatetime(rawDatetime) {
+    try {
+        const datetime = new Date(rawDatetime);
+        const day = datetime.getDate().toString().padStart(2, '0');
+        const month = (datetime.getMonth() + 1).toString().padStart(2, '0'); // Sumamos 1 porque los meses van de 0 a 11
+        const year = datetime.getFullYear();
+        const hour = datetime.getHours().toString().padStart(2, '0');
+        const minute = datetime.getMinutes().toString().padStart(2, '0');
+        return `${day}/${month}/${year} ${hour}:${minute}`;
+    } catch (tcErr) {
+        console.error(tcErr);
+        return rawDatetime;
+    }
+}
+
 export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
@@ -26,6 +41,7 @@ export const DataProvider = ({ children }) => {
 
     const [modalActive, setModalActive] = useState(false);
     const [modalCloseable, setModalCloseable] = useState(false);
+    const [modalContent, setModalContent] = useState(null);
 
     const [isNavbarActive, setIsNavbarActive] = useState(true);
     const toggleNavbar = () => {
@@ -69,7 +85,7 @@ export const DataProvider = ({ children }) => {
     }, []);
     
     return (
-        <DataContext.Provider value={{ copyToClipboard, formatInstructions, isLogged, setIsLogged, user, setUser, fetchUser, modalActive, setModalActive, modalCloseable, setModalCloseable, isNavbarActive, setIsNavbarActive, toggleNavbar, closeNavbar }}>
+        <DataContext.Provider value={{ copyToClipboard, formatInstructions, formatDatetime, isLogged, setIsLogged, user, setUser, fetchUser, modalActive, setModalActive, modalCloseable, setModalCloseable, modalContent, setModalContent, isNavbarActive, setIsNavbarActive, toggleNavbar, closeNavbar }}>
             {children}
         </DataContext.Provider>
     );

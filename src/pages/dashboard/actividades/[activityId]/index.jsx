@@ -7,7 +7,6 @@ import { SERVER_URL } from '@/config'
 
 import { DataContext } from '@/context/DataContext'
 
-import DashboardLayout from '@/components/Layouts/DashboardLayout'
 import PageLayout from '@/components/Layouts/PageLayout'
 import ActivityData from '@/components/ActivityData'
 
