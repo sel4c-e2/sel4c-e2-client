@@ -9,7 +9,7 @@ import { DataContext } from '@/context/DataContext'
 
 import DashboardLayout from '@/components/Layouts/DashboardLayout'
 import PageLayout from '@/components/Layouts/PageLayout'
-import StudentStartQuizAnswers from '@/components/StudentStartQuizAnswers'
+import StudentQuizAnswers from '@/components/StudentQuizAnswers'
 import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
@@ -57,7 +57,7 @@ export default function Alumno() {
             <main className={style.main}>
                 <DashboardLayout>
                     {loading ? 'Cargando...' : <>
-                    <div className={styleDashboard.mainCard + ' col-12'}>
+                    <div className={styleDashboard.mainCard2 + ' col-12'}>
                         <div className={styleDashboard.contentCard}>
                             <div className={styleDashboard.containerCard + ' container'}>
                                 <div className='row'>
@@ -104,18 +104,51 @@ export default function Alumno() {
                             </div>
                         </div>
                     </div>
-                        
-
-                        {/* <h5>Cuestionario inicial:</h5>
-                        <div className='row'>
-                            <div className='col'>
-                                <p>Pregunta</p>
-                            </div>
-                            <div className='col'>
-                                <p>Respuesta</p>
+                    <div className={styleDashboard.card2 + ' col-12 col-sm-6'}>
+                        <div className={styleDashboard.contentCard}>
+                            <div className={styleDashboard.containerCard + ' container'}>
+                                <div>
+                                    <p className={styleDashboard.bigText}>Cuestionario inicial</p>
+                                </div>
+                                <div className='row'>
+                                    <div className={style.leftColumn + ' col-8'}>
+                                        <p>Pregunta</p>
+                                    </div>
+                                    <div className='col-4'>
+                                        <p>Respuesta</p>
+                                    </div>
+                                </div>
+                                {!loading && <StudentQuizAnswers userId={userId} type="all" display="start" />}
                             </div>
                         </div>
-                        {!loading && <StudentStartQuizAnswers userId={userId} />} */}
+                    </div>
+                    <div className={styleDashboard.card2 + ' col-12 col-sm-6'}>
+                        <div className={styleDashboard.contentCard}>
+                            <div className={styleDashboard.containerCard + ' container'}>
+                                <div>
+                                    <p className={styleDashboard.bigText}>Cuestionario final</p>
+                                </div>
+                                <div className='row'>
+                                    <div className={style.leftColumn + ' col-8'}>
+                                        <p>Pregunta</p>
+                                    </div>
+                                    <div className='col-4'>
+                                        <p>Respuesta</p>
+                                    </div>
+                                </div>
+                                {!loading && <StudentQuizAnswers userId={userId} type="all" display="end" />}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styleDashboard.card2 + ' col-12'}>
+                        <div className={styleDashboard.contentCard}>
+                            <div className={styleDashboard.containerCard + ' container'}>
+                                <div>
+                                    <p className={styleDashboard.bigText}>Actividades</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </>}
                 </DashboardLayout>
             </main>

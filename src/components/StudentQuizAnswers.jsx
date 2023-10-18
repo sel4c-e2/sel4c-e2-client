@@ -11,15 +11,33 @@ import DashboardLayout from '@/components/Layouts/DashboardLayout'
 
 import style from '@/assets/styles/Page.module.css'
 
-export default function StudentStartQuizAnswers({userId}) {
+export default function StudentQuizAnswers({userId, type, display}) {
     const [answers, setAnswers] = useState(null);
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
+    
+    const getAnswerText = (numericAnswer) => {
+        switch (numericAnswer) {
+            case 1:
+                return "Totalmente en desacuerdo";
+            case 2:
+                return "En desacuerdo";
+            case 3:
+                return "Ni de acuerdo ni en desacuerdo";
+            case 4:
+                return "De acuerdo";
+            case 5:
+                return "Totalmente de acuerdo";
+            default:
+                return "Respuesta desconocida";
+        }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`${SERVER_URL}/questions/answers/user-id/${userId}`, {
+                const response = await fetch(`${SERVER_URL}/questions/answers/${display}/user-id/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -45,15 +63,16 @@ export default function StudentStartQuizAnswers({userId}) {
                 answers ? (
                     <div>
                         {answers.map((answer, index) => (
-                            <div className='row'>
-                                <p className='col'>
-                                    {answer.question_id}
-                                </p>
-                                <p className='col'>
-                                    {answer.answer}
-                                </p>
-                            </div>
-                        ))}
+                            (type === answer.type || type === "all") && (
+                                <div className='row'>
+                                    <div className={style.leftColumn + ' col-8'}>
+                                        <p><strong>{answer.question_id}:</strong> {answer.question}</p>
+                                    </div>
+                                    <div className='col-4'>
+                                        <p>{getAnswerText(answer.answer)}</p>
+                                    </div>
+                                </div>
+                            )))}
                     </div>
                 ) : (
                     <div>
