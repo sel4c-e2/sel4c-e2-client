@@ -141,7 +141,10 @@ export default function ActivityData({activityId}) {
                                     {viewAnswer ? (
                                         answers.map((answer, index) => (
                                             answer.user_id === viewAnswer && (
-                                                <p>{answer.answer}</p>
+                                                <>
+                                                    {answer.file_path ? <Image src={SERVER_URL + "/" + answer.file_path} width={720} height={720} /> : <></>}
+                                                    <p>{answer.answer}</p>
+                                                </>
                                             )
                                         ))
                                     ) : (
