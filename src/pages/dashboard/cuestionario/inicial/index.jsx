@@ -102,6 +102,13 @@ export default function StartQuiz() {
                             <QuestionCategory category="Pensamiento Analitico" questions={questions} />
                             <QuestionCategory category="Investigacion y Resolucion de Problemas" questions={questions} />
                         </div>
+                        <div className='row'>
+                          <div className='col-3'></div>
+                          <div className='col-6'>
+                            <StartQuizGraph />
+                          </div>
+                          <div className='col-3'></div>
+                        </div>
                     </PageLayout>
                 </main>
             </>
