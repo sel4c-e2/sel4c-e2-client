@@ -12,6 +12,8 @@
 .form .smallText a { color: var(--pri-color); text-decoration: underline; filter: brightness(70%); transition: 0.5s; }
 .form .smallText a:hover { filter: brightness(100%); }
 
+.deleteBtn { background: var(--danger-color); color: var(--text-color); border: 1px solid var(--danger-color-border); padding: .2rem .7rem; font-size: .9rem; border-radius: .5rem; display: inline-block; margin-top: .25rem; }
+
 
 .signup {  }
 .login {  }

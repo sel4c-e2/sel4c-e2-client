@@ -70,7 +70,8 @@ export const DataProvider = ({ children }) => {
                         name: data.name,
                         lastname: data.lastname,
                         email: data.email,
-                        super: data.super
+                        super: data.super,
+                        token: token
                     });
                     setIsLogged(true);
                 }

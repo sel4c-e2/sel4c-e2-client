@@ -14,13 +14,42 @@ import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
 import styleDashboard from '@/assets/styles/Dashboard.module.css'
+import styleForm from '@/assets/styles/Form.module.css'
 
 export default function Alumno() {
     const router = useRouter();
     const { userId } = router.query;
-    const { isLogged } = useContext(DataContext);
+    const { isLogged, user } = useContext(DataContext);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState(null);
+
+    const deleteUser = async (id, token) => {
+        const confirmed = window.confirm("Seguro que quieres eliminar a este alumno?");
+        if (!confirmed) {
+            return;
+        }
+        try {
+            const response = await fetch(`${SERVER_URL}/users/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (response.ok) {
+                console.log('User deleted successfully');
+                router.push('/dashboard/alumnos');
+            } else {
+                const data = await response.json();
+                console.error('Error deleting user:', data.message);
+            }
+        } catch (tcErr) {
+            console.error('Error deleting user:', tcErr);
+        }
+    };
+    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -65,12 +94,19 @@ export default function Alumno() {
                                         <BackLink link={"/dashboard/alumnos"} text={"Atras"} />
                                         <br />
                                         <br />
-                                        <p className={style.title1}>
-                                            {userData.name} {userData.lastname}
-                                        </p>
-                                        <p className={style.title3 + ' d-inline ms-4'}>
-                                            #{userData.user_id}
-                                        </p>
+                                        <div className='row'>
+                                            <div className='col-8'>
+                                                <p className={style.title1}>
+                                                    {userData.name} {userData.lastname}
+                                                </p>
+                                                <p className={style.title3 + ' d-inline ms-4'}>
+                                                    #{userData.user_id}
+                                                </p>
+                                            </div>
+                                            {user.super ? <div className='col-4 text-end'>
+                                                <button onClick={() => deleteUser(userId, user.token)} className={styleForm.deleteBtn}>Eliminar alumno</button>
+                                            </div> : <></>}
+                                        </div> 
                                     </div>
                                     <div className='col-3'>
                                         <p className={style.mutedText}>

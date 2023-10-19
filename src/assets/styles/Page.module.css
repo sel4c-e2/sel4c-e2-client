@@ -17,6 +17,7 @@
 .answerContainer .answerContent { background-color: var(--info-color); padding: 1rem; border-radius: 1rem; height: 100%; min-height: 50vh; }
 
 .backLink { color: var(--text-color); font-size: .9rem; text-decoration: underline; }
+.chevron { transform: rotate(180deg); width: auto; height: .7rem; vertical-align: baseline; margin-right: .25rem; }
 
 .btnType1 { display: block; width: 100%; text-align: center; background-color: var(--sec-color); border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 1rem; font-size: 1.1rem; line-height: 1; padding: .5rem 1rem; }
 .btnType2 { display: block; width: 100%; text-align: center; background-color: var(--pri-color); border: 1px solid rgba(255, 255, 255, .3); border-radius: 1rem; font-size: 1.1rem; line-height: 1; padding: .5rem 1rem; color: var(--inv-text-color); }

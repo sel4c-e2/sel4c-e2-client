@@ -32,16 +32,15 @@ const QuestionCategory = ({ category, questions }) => {
         <div className={style.accordionBody + ' accordion-body'}>
           {(questions && questions.length > 0) ? questions.map(question => (
             question.type === category && 
-            <div className={style.row + ' row'}>
-              <div className={style.col + ' col'}>
+            <div className={style.row + ' row'} data-hidden={question.hidden}>
+              <div className={style.col + ' col-1'}>
                 <p>{question.id}</p>
               </div>
-              <div className={style.col + ' col'}>
+              <div className={style.col + ' col-8'}>
                 <p>{question.question}</p>
               </div>
               <div className={style.col + ' col'}>
                 <input type="checkbox" name="" id="" checked={!question.hidden} />
-                <button>Ocultar</button>
                 <button>Editar</button>
                 <button>Eliminar</button>
               </div>
@@ -58,7 +57,7 @@ const QuestionCategory = ({ category, questions }) => {
 
 export default function StartQuiz() {
     const router = useRouter();
-    const { isLogged } = useContext(DataContext);
+    const { isLogged, user } = useContext(DataContext);
     const [questions, setQuestions] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
@@ -79,6 +78,8 @@ export default function StartQuiz() {
 
         if (!isLogged) {
             router.push("/auth/login?returnTo=dashboard/cuestionario/inicial");
+        } else if (!user.super) {
+          router.push("/dashboard");
         } else {
             fetchData();
         }
@@ -93,7 +94,7 @@ export default function StartQuiz() {
                         <div className={style.row + ' row'}>
                             <div className={style.col + ' col'}>
                               <BackLink />
-                              <h4>Cuestionario inicial</h4>
+                              <h4 className={style.title4 + ' mt-4'}>Cuestionario inicial</h4>
                             </div>
                         </div>
                         <div className={style.accordion + ' accordion'}>
@@ -101,13 +102,6 @@ export default function StartQuiz() {
                             <QuestionCategory category="Habilidades Interpersonales y Trabajo en Equipo" questions={questions} />
                             <QuestionCategory category="Pensamiento Analitico" questions={questions} />
                             <QuestionCategory category="Investigacion y Resolucion de Problemas" questions={questions} />
-                        </div>
-                        <div className='row'>
-                          <div className='col-3'></div>
-                          <div className='col-6'>
-                            <StartQuizGraph />
-                          </div>
-                          <div className='col-3'></div>
                         </div>
                     </PageLayout>
                 </main>

@@ -14,6 +14,7 @@ import styles from '@/assets/styles/Page.module.css'
 export default function StudentsTable() {
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);

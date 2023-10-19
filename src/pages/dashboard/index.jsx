@@ -112,11 +112,13 @@ export default function Dashboard() {
                                 <p className={stylesDashboard.bigText}>Cuestionario inicial</p>
                                 <div className='row'>
                                     <div className='col-12'>
-                                        <Link href={"/dashboard/cuestionario/inicial"} className={stylesPage.btnType1}>
-                                            Ver preguntas
-                                        </Link>
-                                        <br />
-                                        <Link href={"/dashboard/cuestionario/inicial/respuestas"} className={stylesPage.btnType2}>
+                                        {user.super ? <>
+                                            <Link href={"/dashboard/cuestionario/inicial"} className={stylesPage.btnType2}>
+                                                Ver preguntas
+                                            </Link>
+                                            <br />
+                                        </> : <></>}
+                                        <Link href={"/dashboard/cuestionario/inicial/respuestas"} className={stylesPage.btnType1}>
                                             Ver resultados
                                         </Link>
                                     </div>
@@ -130,11 +132,13 @@ export default function Dashboard() {
                                 <p className={stylesDashboard.bigText}>Cuestionario final</p>
                                 <div className='row'>
                                     <div className='col-12'>
-                                        <Link href={"/dashboard/cuestionario/final"} className={stylesPage.btnType1}>
-                                            Ver preguntas
-                                        </Link>
-                                        <br />
-                                        <Link href={"/dashboard/cuestionario/final/respuestas"} className={stylesPage.btnType2}>
+                                        {user.super ? <>
+                                            <Link href={"/dashboard/cuestionario/final"} className={stylesPage.btnType2}>
+                                                Ver preguntas
+                                            </Link>
+                                            <br />
+                                        </> : <></>}
+                                        <Link href={"/dashboard/cuestionario/final/respuestas"} className={stylesPage.btnType1}>
                                             Ver resultados
                                         </Link>
                                     </div>
