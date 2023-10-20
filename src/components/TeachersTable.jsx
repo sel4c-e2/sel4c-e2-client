@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
 import { SERVER_URL } from '@/config'
 
+import { DataContext } from '@/context/DataContext'
+
 import styles from '@/assets/styles/Page.module.css'
 
 export default function TeachersTable() {
+    const { user } = useContext(DataContext);
     const [admins, setAdmins] = useState(null);
     const [loading, setLoading] = useState(true);
     const [loadingSuper, setLoadingSuper] = useState(false);
@@ -76,7 +79,7 @@ export default function TeachersTable() {
         setLoadingAccess(false);
     };
 
-    const handleDeleteAdmin = async (adminId) => {
+    const handleDeleteAdmin = async (adminId, token) => {
         const confirmed = window.confirm("Seguro que quieres eliminar a este profesor?");
         if (!confirmed) {
             return;
@@ -146,7 +149,7 @@ export default function TeachersTable() {
                                     <input type="checkbox" checked={admin.super} onChange={(e) => handleSuperChange(admin.admin_id, e.target.checked)} disabled={loadingSuper || index === 0} />
                                 </div>
                                 <div className={styles.tableCol + ' col'}>
-                                    <button onClick={() => handleDeleteAdmin(admin.admin_id)} disabled={index === 0}>Eliminar</button>
+                                    <button onClick={() => handleDeleteAdmin(admin.admin_id, user.token)} disabled={index === 0}>Eliminar</button>
                                 </div>
                             </div>
                         ))}
