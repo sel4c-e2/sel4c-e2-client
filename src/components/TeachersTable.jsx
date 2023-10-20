@@ -22,7 +22,8 @@ export default function TeachersTable() {
             const response = await fetch(SERVER_URL + "/admins", {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             });
             const data = await response.json();
