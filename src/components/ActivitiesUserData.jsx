@@ -54,7 +54,7 @@ export default function ActivityUserData({userId}) {
                                             {formatDatetime(answer.created_at)}
                                         </p>
                                         {answer.file_path ? <Image src={SERVER_URL + "/" + answer.file_path} width={720} height={720} /> : <></>}
-                                        <Image src={`${SERVER_URL}/activities/download/${userId}/${answer.activity_id}`} width={720} height={720} />
+                                        {/* <Image src={`${SERVER_URL}/activities/download/${userId}/${answer.activity_id}`} width={720} height={720} /> */}
                                         <p className='mt-2'>{answer.answer}</p>
                                     </div>
                                 </div>

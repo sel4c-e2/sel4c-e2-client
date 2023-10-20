@@ -142,7 +142,7 @@ export default function ActivityData({activityId}) {
                                             answer.id === viewAnswer && (
                                                 <>
                                                     {answer.file_path ? <Image src={SERVER_URL + "/" + answer.file_path} width={720} height={720} /> : <></>}
-                                                    <Image src={`${SERVER_URL}/activities/download/${answer.user_id}/${activityId}`} width={720} height={720} />
+                                                    {/* <Image src={`${SERVER_URL}/activities/download/${answer.user_id}/${activityId}`} width={720} height={720} /> */}
                                                     <p>{answer.answer}</p>
                                                 </>
                                             )
