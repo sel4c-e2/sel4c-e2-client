@@ -23,7 +23,6 @@ export default function Alumno() {
     const { isLogged, user } = useContext(DataContext);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState(null);
-    const [activitiesCount, setActivitiesCount] = useState(null);
 
     const deleteUser = async (id, token) => {
         const confirmed = window.confirm("Seguro que quieres eliminar a este alumno?");

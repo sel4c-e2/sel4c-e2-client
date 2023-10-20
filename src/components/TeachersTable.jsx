@@ -77,11 +77,16 @@ export default function TeachersTable() {
     };
 
     const handleDeleteAdmin = async (adminId) => {
+        const confirmed = window.confirm("Seguro que quieres eliminar a este profesor?");
+        if (!confirmed) {
+            return;
+        }
         try {
             const response = await fetch(`${SERVER_URL}/admins/${adminId}`, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }
             });
             console.log(response);
