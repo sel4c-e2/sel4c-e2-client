@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -12,6 +12,7 @@ import DashboardLayout from '@/components/Layouts/DashboardLayout'
 import styles from '@/assets/styles/Page.module.css'
 
 export default function StudentsTable() {
+    const { user } = useContext(DataContext);
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -19,10 +20,11 @@ export default function StudentsTable() {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await fetch(SERVER_URL + "/users/", {
+                const response = await fetch(SERVER_URL + "/users", {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.token}`
                     }
                 });
                 const data = await response.json();
@@ -34,7 +36,7 @@ export default function StudentsTable() {
         };
     
         fetchData();
-    }, []);
+    }, [user]);
     
     return (
         <>
