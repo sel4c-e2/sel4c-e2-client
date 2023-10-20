@@ -43,10 +43,10 @@ export default function StudentsTable() {
             <div className={styles.table}>
                 <div className={`${styles.tableHead} ${styles.tableRow} row`}>
                     <div className={styles.tableCol + ' col'}>
-                        <p>Nombre</p>
+                        <p>Correo electrónico</p>
                     </div>
                     <div className={styles.tableCol + ' col'}>
-                        <p>Apellido</p>
+                        <p>Nombre</p>
                     </div>
                     <div className={styles.tableCol + ' col'}>
                         <p>Edad</p>
@@ -68,10 +68,10 @@ export default function StudentsTable() {
                         {users.map(user => (
                             <Link href={"/dashboard/alumnos/" + user.user_id} className={styles.tableRow + ' row'} key={user.user_id}>
                                 <div className={styles.tableCol + ' col'}>
-                                    <p>{user.name}</p>
+                                    <p>{user.email}</p>
                                 </div>
                                 <div className={styles.tableCol + ' col'}>
-                                    <p>{user.lastname}</p>
+                                    <p>{user.name}</p>
                                 </div>
                                 <div className={styles.tableCol + ' col'}>
                                     <p>{user.age}</p>
