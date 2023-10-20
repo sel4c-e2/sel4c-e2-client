@@ -44,8 +44,6 @@ export default function StudentQuizAnswers({userId, type, display}) {
                     }
                 });
                 const data = await response.json();
-                console.log(data);
-                console.log(data.answers);
                 setMessage(data.message);
                 setAnswers(data.answers);
             } catch (error) {

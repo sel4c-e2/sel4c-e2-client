@@ -10,6 +10,7 @@ import { DataContext } from '@/context/DataContext'
 import DashboardLayout from '@/components/Layouts/DashboardLayout'
 import PageLayout from '@/components/Layouts/PageLayout'
 import StudentQuizAnswers from '@/components/StudentQuizAnswers'
+import ActivitiesUserData from '@/components/ActivitiesUserData'
 import BackLink from '@/components/Widgets/BackLink'
 
 import style from '@/assets/styles/Page.module.css'
@@ -22,6 +23,7 @@ export default function Alumno() {
     const { isLogged, user } = useContext(DataContext);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState(null);
+    const [activitiesCount, setActivitiesCount] = useState(null);
 
     const deleteUser = async (id, token) => {
         const confirmed = window.confirm("Seguro que quieres eliminar a este alumno?");
@@ -179,8 +181,9 @@ export default function Alumno() {
                     <div className={styleDashboard.card2 + ' col-12'}>
                         <div className={styleDashboard.contentCard}>
                             <div className={styleDashboard.containerCard + ' container'}>
-                                <div>
-                                    <p className={styleDashboard.bigText}>Actividades</p>
+                                <p className={styleDashboard.bigText}>Actividades</p>
+                                <div className='row'>
+                                    <ActivitiesUserData userId={userId} />
                                 </div>
                             </div>
                         </div>

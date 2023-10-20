@@ -118,7 +118,7 @@ export default function ActivityData({activityId}) {
                                                 <p>{formatDatetime(answer.updated_at)}</p>
                                             </div>
                                             <div className='col'>
-                                                <button onClick={() => setViewAnswer(answer.user_id)}>
+                                                <button onClick={() => setViewAnswer(answer.id)}>
                                                     Ver evidencia
                                                 </button>
                                             </div>
@@ -130,7 +130,6 @@ export default function ActivityData({activityId}) {
                             ) : (
                                 <p>Cargando...</p>
                             )}
-                            {}
                         </div>
                         <div className='col-12 col-sm-6'>
                             <h4 className={style.title4}>
@@ -140,7 +139,7 @@ export default function ActivityData({activityId}) {
                                 <div className={style.answerContent}>
                                     {viewAnswer ? (
                                         answers.map((answer, index) => (
-                                            answer.user_id === viewAnswer && (
+                                            answer.id === viewAnswer && (
                                                 <>
                                                     {answer.file_path ? <Image src={SERVER_URL + "/" + answer.file_path} width={720} height={720} /> : <></>}
                                                     <p>{answer.answer}</p>
