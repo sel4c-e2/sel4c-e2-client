@@ -78,8 +78,6 @@ export default function LoginForm() {
                     </button>
                     <p className={style.smallText}>Aún no tienes cuenta? Haz click <Link href={"/auth/signup"}>aquí</Link></p>
                     <p className={style.smallText}>Comunicate con un administrador para tener acceso
-                    <br />
-                    <Link href={"https://wa.me/525559975149"} target='_blank'>+52 55 5997 5149</Link></p>
                 </div>
             </div>
         </form>
