@@ -77,7 +77,7 @@ export default function LoginForm() {
                         Iniciar sesión
                     </button>
                     <p className={style.smallText}>Aún no tienes cuenta? Haz click <Link href={"/auth/signup"}>aquí</Link></p>
-                    <p className={style.smallText}>Comunicate con un administrador para tener acceso
+                    <p className={style.smallText}>Comunicate con un administrador para tener acceso</p>
                 </div>
             </div>
         </form>
